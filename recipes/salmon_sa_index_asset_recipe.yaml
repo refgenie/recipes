@@ -1,0 +1,36 @@
+name: salmon_sa_index
+version: 0.0.1
+output_asset_class: salmon_sa_index
+description:
+  Transcriptome index for salmon, produced with salmon index using selective
+  alignment method. Improves quantification accuracy compared to the regular index.
+inputs:
+  files: {}
+  params:
+    threads:
+      default: "8"
+      description: Number of threads to use for parallel computing
+    kmer:
+      default: "31"
+      description: The length of kmer to use to create the indices
+  assets:
+    fasta:
+      asset_class: fasta
+      default: fasta
+      description: fasta asset for genome
+    fasta_txome:
+      asset_class: fasta
+      default: fasta_txome
+      description: fasta asset for transcriptome
+container: combinelab/salmon
+command_template_list:
+  - grep '^>' {fasta} | cut -d ' ' -f 1 > {asset_outfolder}/decoys.txt
+  - sed -i.bak -e 's/>//g' {asset_outfolder}/decoys.txt
+  - rm {asset_outfolder}/decoys.txt.bak
+  - cat {fasta_txome} {fasta} > {asset_outfolder}/gentrome.fa
+  - salmon index -t {asset_outfolder}/gentrome.fa -d {asset_outfolder}/decoys.txt -i
+    {asset_outfolder} -k {kmer} -p {threads}
+  - rm {asset_outfolder}/gentrome.fa {asset_outfolder}/decoys.txt
+custom_properties:
+  version: salmon --version | awk '{print $2}'
+default_tag: "{custom_properties.version}"

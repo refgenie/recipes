@@ -1,0 +1,18 @@
+name: hisat2_index
+version: 0.0.1
+output_asset_class: hisat2_index
+description: Genome index for HISAT2, produced with hisat2-build
+inputs:
+  files: {}
+  params: {}
+  assets:
+    fasta:
+      asset_cls: fasta
+      default: fasta
+      description: fasta asset for genome
+container: databio/refgenie
+command_template_list:
+  - hisat2-build {fasta} {asset_outfolder}/{genome}
+custom_properties:
+  version: ""
+default_tag: "{custom_properties.version}"

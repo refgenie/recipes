@@ -1,0 +1,6 @@
+name: epilog_index
+version: 0.0.1
+description: Genome index for CpG sites, produced by the epilog DNA methylation caller
+seek_keys:
+  epilog_index: '{genome}_{context}.tsv.gz'
+parents: []

@@ -1,0 +1,7 @@
+name: salmon_sa_index
+version: 0.0.1
+description: Transcriptome index for salmon, produced with salmon index using selective
+  alignment method. Improves quantification accuracy compared to the regular index.
+seek_keys:
+  salmon_sa_index: .
+parents: []

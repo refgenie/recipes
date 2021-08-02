@@ -1,0 +1,7 @@
+name: suffixerator_index
+version: 0.0.1
+description: Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator
+  program
+seek_keys:
+  esa: '{genome}.sft'
+parents: []

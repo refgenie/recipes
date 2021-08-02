@@ -1,0 +1,23 @@
+name: star_index
+version: 0.0.1
+output_asset_class: star_index
+description: Genome index for STAR RNA-seq aligner, produced with STAR --runMode genomeGenerate
+inputs:
+  files: {}
+  params:
+    threads:
+      default: "8"
+      description: Number of threads to use for parallel computing
+  assets:
+    fasta:
+      asset_class: fasta
+      default: fasta
+      description: fasta asset for genome
+container: databio/refgenie
+command_template_list:
+  - mkdir -p {asset_outfolder}
+  - STAR --runThreadN {threads} --runMode genomeGenerate --genomeDir {asset_outfolder}
+    --genomeFastaFiles {fasta}
+custom_properties:
+  version: ""
+default_tag: "{custom_properties.version}"

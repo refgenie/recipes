@@ -1,0 +1,7 @@
+name: blacklist
+version: 0.0.1
+description: Atypical, unstructured, or high signal genomic regions present in next-generation
+  sequencing experiments (e.g. from ENCODE)
+seek_keys:
+  blacklist: '{genome}_blacklist.bed.gz'
+parents: []

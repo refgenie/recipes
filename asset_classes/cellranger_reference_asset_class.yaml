@@ -1,0 +1,7 @@
+name: cellranger_reference
+version: 0.0.1
+description: Cell Ranger custom genome reference for read alignment and gene expression
+  quantification
+seek_keys:
+  cellranger_reference: ref
+parents: []

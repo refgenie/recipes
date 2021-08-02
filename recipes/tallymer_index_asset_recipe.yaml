@@ -1,0 +1,33 @@
+name: tallymer_index
+version: 0.0.1
+output_asset_class: tallymer_index
+description:
+  Indexed k-mers for a given enhanced suffix array at a fixed value of
+  k
+inputs:
+  files: {}
+  params:
+    mersize:
+      default: "30"
+      description: The mer size.
+    minocc:
+      default: "2"
+      description: The minimum occurrence number for the mers to index.
+  assets:
+    suffixerator_index:
+      asset_class: suffixerator_index
+      default: suffixerator_index
+      description: enhanced suffix array index for genome
+    fasta:
+      asset_class: fasta
+      default: fasta
+      description: fasta asset for genome
+container: databio/refgenie
+command_template_list:
+  - gt tallymer mkindex -v -counts -pl -mersize {mersize} -minocc {minocc} -indexname
+    {asset_outfolder}/{genome}.tal_{mersize} -esa {esa}/{genome}.sft
+  - gt tallymer search -output qseqnum qpos -strand fp -tyr {asset_outfolder}/{genome}.tal_{mersize}
+    -q {fasta} > {asset_outfolder}/{genome}.tal_{mersize}.gtTxt
+custom_properties:
+  version: ""
+default_tag: "{custom_properties.version}"

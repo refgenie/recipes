@@ -1,0 +1,21 @@
+name: bismark_bt2_index
+version: 0.0.1
+output_asset_class: bismark_bt2_index
+description:
+  Genome index for Bisulfite-Seq applications, produced by bismark_genome_preparation
+  using bowtie2
+inputs:
+  files: {}
+  params: {}
+  assets:
+    fasta:
+      asset_class: fasta
+      default: fasta
+      description: fasta asset for genome
+container: databio/refgenie
+command_template_list:
+  - ln -sf {fasta} {asset_outfolder}
+  - bismark_genome_preparation --bowtie2 {asset_outfolder}
+custom_properties:
+  version: ""
+default_tag: "{custom_properties.version}"

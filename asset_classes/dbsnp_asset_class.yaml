@@ -1,0 +1,9 @@
+name: dbsnp
+version: 0.0.1
+description: The database of single nucleotide polymorphisms (SNPs) and multiple small-scale
+  variations that include insertions/deletions, microsatellites, and non-polymorphic
+  variants
+seek_keys:
+  dbsnp: '{genome}_dbSNP.gz'
+  tabix: '{genome}_dbSNP.gz.tbi'
+parents: []

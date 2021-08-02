@@ -1,0 +1,10 @@
+name: refgene_anno
+version: 0.0.1
+description: gene, TSS, exon, intron, and premature mRNA annotation files
+seek_keys:
+  refgene_anno: '{genome}_refGene.txt.gz'
+  refgene_tss: '{genome}_TSS.bed'
+  refgene_exon: '{genome}_exons.bed'
+  refgene_intron: '{genome}_introns.bed'
+  refgene_pre_mRNA: '{genome}_pre-mRNA.bed'
+parents: []

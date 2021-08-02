@@ -1,0 +1,17 @@
+name: gencode_gtf
+version: 0.0.1
+output_asset_class: gencode_gtf
+description: GTF annotation asset which provides access to all annotated transcripts
+  which make up an Ensembl gene set.
+inputs:
+  files:
+    gencode_gtf:
+      description: Annotation file in Gene Transfer Format (GTF) from Gencode
+  params: {}
+  assets: {}
+container: databio/refgenie
+command_template_list:
+- cp {gencode_gtf} {asset_outfolder}/{genome}.gtf.gz
+custom_properties:
+  version: ''
+default_tag: '{custom_properties.version}'

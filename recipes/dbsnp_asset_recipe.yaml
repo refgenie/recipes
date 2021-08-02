@@ -1,0 +1,21 @@
+name: dbsnp
+version: 0.0.1
+output_asset_class: dbsnp
+description: The database of single nucleotide polymorphisms (SNPs) and multiple small-scale
+  variations that include insertions/deletions, microsatellites, and non-polymorphic
+  variants
+inputs:
+  files:
+    dbsnp_vcf:
+      description: SNP database file in Variant Call Format (VCF)
+    dbsnp_tbi:
+      description: tabix index of the dbsnp.vcf file
+  params: {}
+  assets: {}
+container: databio/refgenie
+command_template_list:
+- cp {dbsnp_vcf} {asset_outfolder}/{genome}_dbSNP.gz
+- cp {dbsnp_tbi} {asset_outfolder}/{genome}_dbSNP.gz.tbi
+custom_properties:
+  version: ''
+default_tag: '{custom_properties.version}'

@@ -1,0 +1,20 @@
+name: fasta_txome
+version: 0.0.1
+output_asset_class: fasta_txome
+description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools
+  index) and chromosome sizes file
+inputs:
+  files:
+    fasta:
+      description: gzipped fasta file
+  params: {}
+  assets: {}
+container: databio/refgenie
+command_template_list:
+- cp {fasta} {asset_outfolder}/{genome}.fa.gz
+- gzip -df {asset_outfolder}/{genome}.fa.gz
+- samtools faidx {asset_outfolder}/{genome}.fa
+- cut -f 1,2 {asset_outfolder}/{genome}.fa.fai > {asset_outfolder}/{genome}.chrom.sizes
+custom_properties:
+  version: ''
+default_tag: '{custom_properties.version}'

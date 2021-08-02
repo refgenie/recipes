@@ -1,0 +1,21 @@
+name: tgMap
+version: 0.0.1
+output_asset_class: tgMap
+description:
+  Transcript to gene map file, containing two columns mapping of each transcript
+  present in the reference to the corresponding gene.
+inputs:
+  files: {}
+  params: {}
+  assets:
+    salmon_partial_sa_index:
+      asset_class: salmon_partial_sa_index
+      default: salmon_partial_sa_index
+      description: partial salmon index asset
+container: ""
+command_template_list:
+  - grep '^>' {salmon_partial_sa_index}/gentrome.fa | cut -d ' ' -f 1,7 | tr -s ' '
+    '\t' | sed 's/[>'gene_symbol:']//g' > {asset_outfolder}/{genome}_txp2gene.tsv
+custom_properties:
+  version: ""
+default_tag: "{custom_properties.version}"

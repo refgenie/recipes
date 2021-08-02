@@ -1,0 +1,7 @@
+name: feat_annotation
+version: 0.0.1
+description: Combined genomic feature annotation created using an Ensembl GTF annotation
+  asset and an Ensembl regulatory build annotation asset
+seek_keys:
+  feat_annotation: '{genome}_annotations.bed.gz'
+parents: []

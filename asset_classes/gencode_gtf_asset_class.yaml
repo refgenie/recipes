@@ -1,0 +1,7 @@
+name: gencode_gtf
+version: 0.0.1
+description: GTF annotation asset which provides access to all annotated transcripts
+  which make up an Ensembl gene set.
+seek_keys:
+  gencode_gtf: '{genome}.gtf.gz'
+parents: []

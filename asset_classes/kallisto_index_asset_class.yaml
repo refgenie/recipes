@@ -1,0 +1,6 @@
+name: kallisto_index
+version: 0.0.1
+description: Genome index for kallisto, produced with kallisto index
+seek_keys:
+  kallisto_index: .
+parents: []

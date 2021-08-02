@@ -1,0 +1,26 @@
+name: epilog_index
+version: 0.0.1
+output_asset_class: epilog_index
+description: Genome index for CpG sites, produced by the epilog DNA methylation caller
+inputs:
+  files: {}
+  params:
+    context:
+      default: CG
+      description:
+        Substring to index. One or more space-separated strings to index.
+        e.g. 'CG' or 'CG CA CT CC'
+  assets:
+    fasta:
+      asset_class: fasta
+      default: fasta
+      description: fasta asset for genome
+container: databio/refgenie
+command_template_list:
+  - epilog index -- --infile {fasta} --outfile {asset_outfolder}/{genome}_{context}.tsv
+    --contexts {context}
+  - bgzip {asset_outfolder}/{genome}_{context}.tsv
+  - tabix -s 1 -b 2 -e 2 {asset_outfolder}/{genome}_{context}.tsv.gz
+custom_properties:
+  version: ""
+default_tag: "{custom_properties.version}"

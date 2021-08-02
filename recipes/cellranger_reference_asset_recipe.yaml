@@ -1,0 +1,31 @@
+name: cellranger_reference
+version: 0.0.1
+output_asset_class: cellranger_reference
+description:
+  Cell Ranger custom genome reference for read alignment and gene expression
+  quantification
+inputs:
+  files: {}
+  params:
+    threads:
+      default: "8"
+      description: Number of threads to use for parallel computing
+  assets:
+    gencode_gtf:
+      asset_class: gtf
+      default: gencode_gtf
+      description: Annotation file in Gene Transfer Format (GTF) from Gencode
+    fasta:
+      asset_class: fasta
+      default: fasta
+      description: fasta asset for genome
+container: databio/refgenie
+command_template_list:
+  - gunzip {gtf} -c > {asset_outfolder}/{genome}.gtf
+  - cellranger mkgtf {asset_outfolder}/{genome}.gtf {asset_outfolder}/{genome}_filtered.gtf
+  - rm {asset_outfolder}/{genome}.gtf
+  - cd {asset_outfolder}; cellranger mkref --genome=ref --fasta={fasta} --genes={asset_outfolder}/{genome}_filtered.gtf
+    --nthreads={threads}
+custom_properties:
+  version: ""
+default_tag: "{custom_properties.version}"
