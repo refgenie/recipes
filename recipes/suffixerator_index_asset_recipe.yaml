@@ -19,8 +19,7 @@ inputs:
       description: fasta asset for genome
 container: databio/refgenie
 command_template_list:
-  - gt suffixerator -dna -pl -tis -suf -lcp -v -showprogress -memlimit {memlimit} -db
-    {fasta} -indexname {asset_outfolder}/{genome}.sft
+  - gt suffixerator -dna -pl -tis -suf -lcp -v -showprogress -memlimit {{params.memlimit}} -db {{assets.fasta}} -indexname {{asset_outfolder}}/{{genome}}.sft
 custom_properties:
   version: ""
-default_tag: "{custom_properties.version}"
+default_tag: "{{custom_properties.version}}"

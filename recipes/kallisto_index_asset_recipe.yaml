@@ -12,7 +12,7 @@ inputs:
       description: fasta asset for transcriptome
 container: databio/refgenie
 command_template_list:
-  - kallisto index -i {asset_outfolder}/{genome}_kallisto_index.idx {fasta}
+  - kallisto index -i {{asset_outfolder}}/{{genome}}_kallisto_index.idx {{assets.fasta}}
 custom_properties:
   version: ""
-default_tag: "{custom_properties.version}"
+default_tag: "{{custom_properties.version}}"

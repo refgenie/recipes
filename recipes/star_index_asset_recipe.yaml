@@ -15,9 +15,8 @@ inputs:
       description: fasta asset for genome
 container: databio/refgenie
 command_template_list:
-  - mkdir -p {asset_outfolder}
-  - STAR --runThreadN {threads} --runMode genomeGenerate --genomeDir {asset_outfolder}
-    --genomeFastaFiles {fasta}
+  - mkdir -p {{asset_outfolder}}
+  - STAR --runThreadN {{params.threads}} --runMode genomeGenerate --genomeDir {{asset_outfolder}} --genomeFastaFiles {{assets.fasta}}
 custom_properties:
   version: ""
-default_tag: "{custom_properties.version}"
+default_tag: "{{custom_properties.version}}"

@@ -1,7 +1,8 @@
 name: fasta
 version: 1.0.0
 output_asset_class: fasta
-description: DNA sequences in the FASTA format, indexed FASTA (produced with samtools
+description:
+  DNA sequences in the FASTA format, indexed FASTA (produced with samtools
   index) and chromosome sizes file
 inputs:
   files:
@@ -11,10 +12,10 @@ inputs:
   assets: null
 container: docker.io/databio/refgenie
 command_template_list:
-- cp {files.fasta} {asset_outfolder}/{genome}.fa.gz
-- gzip -df {asset_outfolder}/{genome}.fa.gz
-- samtools faidx {asset_outfolder}/{genome}.fa
-- cut -f 1,2 {asset_outfolder}/{genome}.fa.fai > {asset_outfolder}/{genome}.chrom.sizes
+  - cp {{files.fasta}} {{asset_outfolder}}/{{genome}}.fa.gz
+  - gzip -df {{asset_outfolder}}/{{genome}}.fa.gz
+  - samtools faidx {{asset_outfolder}}/{{genome}}.fa
+  - cut -f 1,2 {{asset_outfolder}}/{{genome}}.fa.fai > {{asset_outfolder}}/{{genome}}.chrom.sizes
 custom_properties:
   version: samtools --version-only
-default_tag: '{custom_properties.version}'
+default_tag: "{{custom_properties.version}}"

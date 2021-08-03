@@ -18,7 +18,7 @@ inputs:
       description: fasta asset for transcriptome
 container: combinelab/salmon
 command_template_list:
-  - salmon index -t {fasta} -i {asset_outfolder} -k {kmer} -p {threads}
+  - salmon index -t {{assets.fasta}} -i {{asset_outfolder}} -k {{params.kmer}} -p {{params.threads}}
 custom_properties:
   version: salmon --version | awk '{print $2}'
-default_tag: "{custom_properties.version}"
+default_tag: "{{custom_properties.version}}"

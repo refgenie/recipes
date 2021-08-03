@@ -24,13 +24,12 @@ inputs:
       description: fasta asset for transcriptome
 container: combinelab/salmon
 command_template_list:
-  - grep '^>' {fasta} | cut -d ' ' -f 1 > {asset_outfolder}/decoys.txt
-  - sed -i.bak -e 's/>//g' {asset_outfolder}/decoys.txt
-  - rm {asset_outfolder}/decoys.txt.bak
-  - cat {fasta_txome} {fasta} > {asset_outfolder}/gentrome.fa
-  - salmon index -t {asset_outfolder}/gentrome.fa -d {asset_outfolder}/decoys.txt -i
-    {asset_outfolder} -k {kmer} -p {threads}
-  - rm {asset_outfolder}/gentrome.fa {asset_outfolder}/decoys.txt
+  - grep '^>' {{files.fasta}} | cut -d ' ' -f 1 > {{asset_outfolder}}/decoys.txt
+  - sed -i.bak -e 's/>//g' {{asset_outfolder}}/decoys.txt
+  - rm {{asset_outfolder}}/decoys.txt.bak
+  - cat {{files.fasta_txome}} {{files.fasta}} > {{asset_outfolder}}/gentrome.fa
+  - salmon index -t {{asset_outfolder}}/gentrome.fa -d {{asset_outfolder}}/decoys.txt -i {{asset_outfolder}} -k {{params.kmer}} -p {{params.threads}}
+  - rm {{asset_outfolder}}/gentrome.fa {{asset_outfolder}}/decoys.txt
 custom_properties:
   version: salmon --version | awk '{print $2}'
-default_tag: "{custom_properties.version}"
+default_tag: "{{custom_properties.version}}"

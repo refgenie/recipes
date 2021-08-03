@@ -12,7 +12,7 @@ inputs:
       description: fasta asset for genome
 container: databio/refgenie
 command_template_list:
-  - hisat2-build {fasta} {asset_outfolder}/{genome}
+  - hisat2-build {{assets.fasta}} {{asset_outfolder}}/{{genome}}
 custom_properties:
   version: ""
-default_tag: "{custom_properties.version}"
+default_tag: "{{custom_properties.version}}"

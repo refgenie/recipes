@@ -11,7 +11,7 @@ inputs:
       default: "8"
       description: Number of threads to use for parallel computing
   assets:
-    gencode_gtf:
+    gtf:
       asset_class: gtf
       default: gencode_gtf
       description: Annotation file in Gene Transfer Format (GTF) from Gencode
@@ -21,11 +21,11 @@ inputs:
       description: fasta asset for genome
 container: databio/refgenie
 command_template_list:
-  - gunzip {gtf} -c > {asset_outfolder}/{genome}.gtf
-  - cellranger mkgtf {asset_outfolder}/{genome}.gtf {asset_outfolder}/{genome}_filtered.gtf
-  - rm {asset_outfolder}/{genome}.gtf
-  - cd {asset_outfolder}; cellranger mkref --genome=ref --fasta={fasta} --genes={asset_outfolder}/{genome}_filtered.gtf
-    --nthreads={threads}
+  - gunzip {{assets.gtf}} -c > {{asset_outfolder}}/{{genome}}.gtf
+  - cellranger mkgtf {{asset_outfolder}}/{{genome}}.gtf {{asset_outfolder}}/{{genome}}_filtered.gtf
+  - rm {{asset_outfolder}}/{{genome}}.gtf
+  - cd {{asset_outfolder}}; cellranger mkref --genome=ref --fasta={{assets.fasta}} --genes={{asset_outfolder}}/{{genome}}_filtered.gtf
+    --nthreads={{params.threads}}
 custom_properties:
   version: ""
-default_tag: "{custom_properties.version}"
+default_tag: "{{custom_properties.version}}"

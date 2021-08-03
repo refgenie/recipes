@@ -1,9 +1,0 @@
-name: fasta_txome
-version: 0.0.1
-description: cDNA sequences in the FASTA format, indexed FASTA (produced with samtools
-  index) and chromosome sizes file
-seek_keys:
-  fasta_txome: '{genome}.fa'
-  fai: '{genome}.fa.fai'
-  chrom_sizes: '{genome}.chrom.sizes'
-parents: []
