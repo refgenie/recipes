@@ -1,5 +1,5 @@
 name: bowtie2_index
-version: 1.0.0
+version: 0.0.1
 output_asset_class: bowtie2_index
 description: Genome index for bowtie, produced with bowtie-build
 inputs:
