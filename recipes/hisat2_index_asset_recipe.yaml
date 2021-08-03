@@ -7,7 +7,7 @@ inputs:
   params: {}
   assets:
     fasta:
-      asset_cls: fasta
+      asset_class: fasta
       default: fasta
       description: fasta asset for genome
 container: databio/refgenie
