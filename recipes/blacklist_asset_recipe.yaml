@@ -14,5 +14,5 @@ container: databio/refgenie
 command_template_list:
   - cp {{files.blacklist}} {{asset_outfolder}}/{{genome}}_blacklist.bed.gz
 custom_properties:
-  version: ""
+  version: "default"
 default_tag: "{{custom_properties.version}}"

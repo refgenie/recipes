@@ -16,6 +16,4 @@ command_template_list:
   - gzip -dcf {{asset_outfolder}}/{{genome}}_refGene.txt.gz | awk -v OFS='\t' '$9>1' | awk -F'\t' '{{ exonCount=int($9);split($10,exonStarts,"[,]"); split($11,exonEnds,"[,]"); for(i=1;i<exonCount;i++) {printf("%s\\t%s\\t%s\\t%s\\t%d\\t%s\\n",$3,exonEnds[i],exonStarts[i+1],$13,($3=="+"?i:exonCount-i),$4);}}}' | LC_COLLATE=C sort -k1,1 -k2,2n -u > {{asset_outfolder}}/{{genome}}_introns.bed
   - gzip -dcf {{asset_outfolder}}/{{genome}}_refGene.txt.gz | grep 'cmpl' | awk  '{print $3"\t"$5"\t"$6"\t"$13"\t.\t"$4}' | LC_COLLATE=C sort -k1,1 -k2,2n -u >  {{asset_outfolder}}/{{genome}}_pre-mRNA.bed
 
-custom_properties:
-  version: ""
-default_tag: "{{custom_properties.version}}"
+default_tag: "default"

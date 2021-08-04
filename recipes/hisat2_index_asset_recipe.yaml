@@ -14,5 +14,5 @@ container: databio/refgenie
 command_template_list:
   - hisat2-build {{assets.fasta}} {{asset_outfolder}}/{{genome}}
 custom_properties:
-  version: ""
+  version: "hisat2-build --version | awk 'NR==5{print $4}'"
 default_tag: "{{custom_properties.version}}"

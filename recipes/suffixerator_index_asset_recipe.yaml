@@ -21,5 +21,5 @@ container: databio/refgenie
 command_template_list:
   - gt suffixerator -dna -pl -tis -suf -lcp -v -showprogress -memlimit {{params.memlimit}} -db {{assets.fasta}} -indexname {{asset_outfolder}}/{{genome}}.sft
 custom_properties:
-  version: ""
+  version: "gt suffixerator --version | awk 'NR==1{print $4}'"
 default_tag: "{{custom_properties.version}}"

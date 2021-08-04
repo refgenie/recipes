@@ -27,5 +27,5 @@ command_template_list:
   - gt tallymer mkindex -v -counts -pl -mersize {{params.mersize}} -minocc {{params.minocc}} -indexname {{asset_outfolder}}/{{genome}}.tal_{{params.mersize}} -esa {{assets.suffixerator_index}}/{{genome}}.sft
   - gt tallymer search -output qseqnum qpos -strand fp -tyr {{asset_outfolder}}/{{genome}}.tal_{{params.mersize}} -q {{assets.fasta}} > {{asset_outfolder}}/{{genome}}.tal_{{params.mersize}}.gtTxt
 custom_properties:
-  version: ""
+  version: "gt tallymer --version | awk 'NR==1{print $4}'"
 default_tag: "{{custom_properties.version}}"

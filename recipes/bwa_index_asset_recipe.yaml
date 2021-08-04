@@ -15,5 +15,5 @@ command_template_list:
   - ln -sf {{assets.fasta}} {{asset_outfolder}}
   - bwa index {{asset_outfolder}}/{{genome}}.fa
 custom_properties:
-  version: ""
+  version: "" # no --version arg
 default_tag: "{{custom_properties.version}}"

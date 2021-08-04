@@ -17,6 +17,4 @@ container: databio/refgenie
 command_template_list:
   - cp {{files.dbsnp_vcf}} {{asset_outfolder}}/{{genome}}_dbSNP.gz
   - cp {{files.dbsnp_tbi}} {{asset_outfolder}}/{{genome}}_dbSNP.gz.tbi
-custom_properties:
-  version: ""
-default_tag: "{{custom_properties.version}}"
+default_tag: "default"

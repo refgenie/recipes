@@ -27,5 +27,5 @@ command_template_list:
   - cd {{asset_outfolder}}; cellranger mkref --genome=ref --fasta={{assets.fasta}} --genes={{asset_outfolder}}/{{genome}}_filtered.gtf
     --nthreads={{params.threads}}
 custom_properties:
-  version: ""
+  version: "cellranger mkref --version | awk 'NR==6{print $3}'"
 default_tag: "{{custom_properties.version}}"

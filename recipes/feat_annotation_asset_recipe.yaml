@@ -30,6 +30,4 @@ command_template_list:
   - cat {{asset_outfolder}}/{{genome}}_enhancer.bed {{asset_outfolder}}/{{genome}}_promoter.bed {{asset_outfolder}}/{{genome}}_promoter_flanking.bed {{asset_outfolder}}/{{genome}}_5utr.bed {{asset_outfolder}}/{{genome}}_3utr.bed {{asset_outfolder}}/{{genome}}_exons.bed {{asset_outfolder}}/{{genome}}_introns.bed | awk -F'\t' '!seen[$1, $2, $3]++' > {{asset_outfolder}}/{{genome}}_annotations.bed
   - rm -f {{asset_outfolder}}/{{genome}}_enhancer.bed {{asset_outfolder}}/{{genome}}_promoter.bed {{asset_outfolder}}/{{genome}}_promoter_flanking.bed {{asset_outfolder}}/{{genome}}_5utr.bed {{asset_outfolder}}/{{genome}}_3utr.bed {{asset_outfolder}}/{{genome}}_exons.bed {{asset_outfolder}}/{{genome}}_introns.bed
   - gzip -f {{asset_outfolder}}/{{genome}}_annotations.bed
-custom_properties:
-  version: ""
-default_tag: "{{custom_properties.version}}"
+default_tag: "default"

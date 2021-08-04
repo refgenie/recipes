@@ -13,6 +13,4 @@ inputs:
 container: databio/refgenie
 command_template_list:
   - cp {{files.gff}} {{asset_outfolder}}/{{genome}}.gff.gz
-custom_properties:
-  version: ""
-default_tag: "{{custom_properties.version}}"
+default_tag: "default"

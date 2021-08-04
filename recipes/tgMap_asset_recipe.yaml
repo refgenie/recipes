@@ -15,6 +15,4 @@ inputs:
 container: ""
 command_template_list:
   - grep '^>' {{assets.salmon_partial_sa_index}}/gentrome.fa | cut -d ' ' -f 1,7 | tr -s ' ' '\t' | sed 's/[>'gene_symbol:']//g' > {{asset_outfolder}}/{{genome}}_txp2gene.tsv
-custom_properties:
-  version: ""
-default_tag: "{{custom_properties.version}}"
+default_tag: "default"

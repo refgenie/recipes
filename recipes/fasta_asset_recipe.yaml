@@ -17,5 +17,5 @@ command_template_list:
   - samtools faidx {{asset_outfolder}}/{{genome}}.fa
   - cut -f 1,2 {{asset_outfolder}}/{{genome}}.fa.fai > {{asset_outfolder}}/{{genome}}.chrom.sizes
 custom_properties:
-  version: samtools --version-only
+  version: "samtools --version-only"
 default_tag: "{{custom_properties.version}}"

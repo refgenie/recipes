@@ -18,5 +18,5 @@ command_template_list:
   - mkdir -p {{asset_outfolder}}
   - STAR --runThreadN {{params.threads}} --runMode genomeGenerate --genomeDir {{asset_outfolder}} --genomeFastaFiles {{assets.fasta}}
 custom_properties:
-  version: ""
+  version: "STAR --version"
 default_tag: "{{custom_properties.version}}"

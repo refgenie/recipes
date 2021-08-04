@@ -17,5 +17,5 @@ command_template_list:
   - ln -sf {{assets.fasta}} {{asset_outfolder}}
   - bismark_genome_preparation --bowtie2 {{asset_outfolder}}
 custom_properties:
-  version: ""
+  version: "bismark_genome_preparation --version | awk 'NR==4{print $5}' | cut -c2-"
 default_tag: "{{custom_properties.version}}"
