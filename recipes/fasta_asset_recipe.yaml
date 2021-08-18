@@ -3,7 +3,7 @@ version: 0.0.1
 output_asset_class: fasta
 description:
   DNA sequences in the FASTA format, indexed FASTA (produced with samtools
-  index) and chromosome sizes file
+  index), chromosome sizes file and FASTA dict (produced with samtools dict)
 inputs:
   files:
     fasta:
@@ -16,6 +16,7 @@ command_template_list:
   - gzip -df {{asset_outfolder}}/{{genome}}.fa.gz
   - samtools faidx {{asset_outfolder}}/{{genome}}.fa
   - cut -f 1,2 {{asset_outfolder}}/{{genome}}.fa.fai > {{asset_outfolder}}/{{genome}}.chrom.sizes
+  - cat {{asset_outfolder}}/{{genome}}.fa | samtools dict -o {{asset_outfolder}}/{{genome}}.dict
 custom_properties:
   version: "samtools --version-only"
 default_tag: "{{custom_properties.version}}"
