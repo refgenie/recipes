@@ -7,13 +7,13 @@ description:
 inputs:
   files:
     fasta:
-      description: gzipped fasta file
+      description: A FASTA file. Gzipped or not.
   params: null
   assets: null
 container: docker.io/databio/refgenie
 command_template_list:
   - cp {{files.fasta}} {{asset_outfolder}}/{{genome}}.fa.gz
-  - gzip -df {{asset_outfolder}}/{{genome}}.fa.gz
+  - if (file {{asset_outfolder}}/{{genome}}.fa.gz | grep -q compressed ) ; then gzip -df {{asset_outfolder}}/{{genome}}.fa.gz ; else mv {{asset_outfolder}}/{{genome}}.fa.gz {{asset_outfolder}}/{{genome}}.fa ; fi
   - samtools faidx {{asset_outfolder}}/{{genome}}.fa
   - cut -f 1,2 {{asset_outfolder}}/{{genome}}.fa.fai > {{asset_outfolder}}/{{genome}}.chrom.sizes
   - cat {{asset_outfolder}}/{{genome}}.fa | samtools dict -o {{asset_outfolder}}/{{genome}}.dict
