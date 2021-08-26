@@ -1,7 +1,7 @@
-name: bowtie2_index
+name: bowtie1_index
 version: 0.0.1
-output_asset_class: bowtie2_index
-description: Genome index for bowtie2, produced with bowtie2-build
+output_asset_class: bowtie1_index
+description: Genome index for bowtie, produced with bowtie-build
 inputs:
   files: null
   params:
@@ -15,7 +15,7 @@ inputs:
       default: fasta
 container: docker.io/databio/refgenie
 command_template_list:
-  - bowtie2-build --threads {{params.threads}} {{assets.fasta}} {{asset_outfolder}}/{{genome}}
+  - bowtie-build --threads {{params.threads}} {{assets.fasta}} {{asset_outfolder}}/{{genome}}
 custom_properties:
-  version: bowtie2-build --version | awk 'NR==1{print $3}'
+  version: bowtie-build --version | awk 'NR==1{print $3}'
 default_tag: "{{custom_properties.version}}"
