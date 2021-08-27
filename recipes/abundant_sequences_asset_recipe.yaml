@@ -1,0 +1,22 @@
+name: abundant_sequences
+version: 0.0.1
+output_asset_class: abundant_sequences
+description:
+inputs:
+  files:
+    phix:
+      description: PhiX sequences in FASTA format
+    polya:
+      description: Poly(A) sequences in FASTA format
+    polyc:
+      description: Poly(C) sequences in FASTA format
+  params: null
+  assets: null
+container: docker.io/databio/refgenie
+command_template_list:
+  - cp {{files.phix}} {{asset_outfolder}}/{{genome}}_phix.fa
+  - cp {{files.polya}} {{asset_outfolder}}/{{genome}}_polya.fa
+  - cp {{files.polyc}} {{asset_outfolder}}/{{genome}}_polyc.fa
+custom_properties:
+  version: ""
+default_tag: "{{custom_properties.version}}"
