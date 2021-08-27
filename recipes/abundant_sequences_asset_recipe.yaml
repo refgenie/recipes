@@ -1,7 +1,7 @@
 name: abundant_sequences
 version: 0.0.1
 output_asset_class: abundant_sequences
-description:
+description: Abundant sequences in the FASTA format, PhiX spike-in, Poly(A) and Poly(C)
 inputs:
   files:
     phix:
