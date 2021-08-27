@@ -2,6 +2,7 @@ name: abundant_sequences
 version: 0.0.1
 description: Abundant sequences in the FASTA format -- PhiX spike-in, Poly(A), Poly(C) and adapter sequences
 seek_keys:
+  abundant_sequences: "."
   phix: "{genome}_phix.fa"
   polyA: "{genome}_polyA.fa"
   polyC: "{genome}_polyC.fa"
