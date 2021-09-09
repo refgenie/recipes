@@ -2,5 +2,8 @@ name: hisat2_index
 version: 0.0.1
 description: Genome index for HISAT2, produced with hisat2-build
 seek_keys:
-  hisat2_index: '{genome}'
+  hisat2_index:
+    value: "{genome}"
+    type: prefix
+    description: The basename of the index for the reference genome
 parents: []

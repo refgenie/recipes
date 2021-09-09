@@ -1,7 +1,11 @@
 name: tgMap
 version: 0.0.1
-description: Transcript to gene map file, containing two columns mapping of each transcript
+description:
+  Transcript to gene map file, containing two columns mapping of each transcript
   present in the reference to the corresponding gene.
 seek_keys:
-  tgMap: '{genome}_txp2gene.tsv'
+  tgMap:
+    value: "{genome}_txp2gene.tsv"
+    type: file
+    description: "a TSV file containing two columns"
 parents: []

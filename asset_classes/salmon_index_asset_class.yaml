@@ -2,5 +2,8 @@ name: salmon_index
 version: 0.0.1
 description: Transcriptome index for salmon, produced with salmon index
 seek_keys:
-  salmon_index: .
+  salmon_index:
+    value: "."
+    type: directory
+    description: Directory containing the Salmon index
 parents: []

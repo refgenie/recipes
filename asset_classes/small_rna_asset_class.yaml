@@ -3,6 +3,12 @@ version: 0.0.1
 description: Small RNA sequences in the FASTA format. A predicted hairpin portion of a miRNA transcript and information on the location and sequence of the mature miRNA sequence
 seek_keys:
   small_rna: .
-  hairpin: "{genome}_hairpin.fa"
-  mature: "{genome}_mature.fa"
+  hairpin:
+    value: "{genome}_hairpin.fa"
+    type: file
+    description: The predicted hairpin portion of a miRNA transcript in the FASTA format.
+  mature:
+    value: "{genome}_mature.fa"
+    type: file
+    description: The predicted mature miRNA sequence in the FASTA format.
 parents: []

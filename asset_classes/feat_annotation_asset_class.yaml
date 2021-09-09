@@ -4,5 +4,8 @@ description:
   Combined genomic feature annotation created using an Ensembl GTF annotation
   asset and an Ensembl regulatory build annotation asset
 seek_keys:
-  feat_annotation: "{genome}_annotations.bed.gz"
+  feat_annotation:
+    value: "{genome}_annotations.bed.gz"
+    type: file
+    description: "Combined genomic feature annotation file"
 parents: []

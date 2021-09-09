@@ -2,7 +2,13 @@ name: ensembl_gtf
 version: 0.0.1
 description: Ensembl GTF, TSS, and gene body annotation
 seek_keys:
-  tss: "{genome}_ensembl_TSS.bed"
-  gene_body: "{genome}_ensembl_gene_body.bed"
+  tss:
+    value: "{genome}_ensembl_TSS.bed"
+    type: file
+    description: Ensembl TSS annotation
+  gene_body:
+    value: "{genome}_ensembl_gene_body.bed"
+    type: file
+    description: Ensembl gene body annotation
 parents:
   - gtf

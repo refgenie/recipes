@@ -2,5 +2,8 @@ name: ensembl_rb
 version: 0.0.1
 description: A regulatory annotation file
 seek_keys:
-  ensembl_rb: '{genome}.gff.gz'
+  ensembl_rb:
+    value: "{genome}.gff.gz"
+    type: file
+    description: GFF file with regulatory elements
 parents: []
