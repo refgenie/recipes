@@ -6,6 +6,7 @@ seek_keys:
     value: "."
     type: directory
     description: Directory containing the small RNA sequences.
+  hairpin:
     value: "{genome}_hairpin.fa"
     type: file
     description: The predicted hairpin portion of a miRNA transcript in the FASTA format.
