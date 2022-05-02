@@ -1,0 +1,14 @@
+name: bed12
+version: 0.0.1
+output_asset_class: bed
+description: Genomic feature annotations in BED12 format
+inputs:
+  files:
+    bed:
+      description: Genomic feature annotations in Browser Extensible Data (BED12) format
+  params: {}
+  assets: {}
+container: databio/refgenie
+command_template_list:
+  - cp {{files.bed}} {{asset_outfolder}}/{{genome}}.bed.gz
+default_tag: "default"
