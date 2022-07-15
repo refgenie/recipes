@@ -1,0 +1,27 @@
+name: fasta_attributes
+version: 0.0.1
+output_asset_class: fasta_attributes
+description:
+  Attributes to Sequences in the FASTA file. 
+  mito_name (Mitocondrial chromosome name) and macs_gsize (Genome size).
+inputs:
+  files: {}
+  params:
+    name:
+      description: Mitocondrial chromosome name
+    size:
+      description: Genome size
+  params: {}
+  assets: {}
+container: docker.io/databio/refgenie
+command_template_list:
+  - cp {{files.fasta}} {{asset_outfolder}}/{{genome}}.fa.gz
+test:
+  inputs:
+    name: "MT"
+    size: "2.7e9"
+  outputs:
+    mito_name:
+      value: "MT"
+    macs_gsize:
+      value: "2.7e9"
