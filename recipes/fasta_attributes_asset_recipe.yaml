@@ -14,8 +14,10 @@ inputs:
   params: {}
   assets: {}
 container: docker.io/databio/refgenie
+default_tag: ''
 command_template_list:
-  - cp {{files.fasta}} {{asset_outfolder}}/{{genome}}.fa.gz
+  - echo {{params.name}}
+  - echo {{params.size}}
 test:
   inputs:
     name: "MT"
