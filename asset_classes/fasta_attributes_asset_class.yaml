@@ -3,12 +3,12 @@ version: 0.0.1
 description: Attributes to Sequences in the FASTA file. mito_name (Mitocondrial chromosome name) and macs_gsize (Genome size).
 seek_keys:
   mito_name:
-    value: "{name}"
+    value: "{params.name}"
     description: Mitocondrial chromosome name
     type: string
   macs_gsize:
-    value: "{size}"
-    description: Genome size
+    value: "{params.name}"
+    description: Genome efective size
     type: string
 parents: 
   - fasta
