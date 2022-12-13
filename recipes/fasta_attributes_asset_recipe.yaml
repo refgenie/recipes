@@ -11,12 +11,16 @@ inputs:
       description: Mitocondrial chromosome name
     size:
       description: Genome size
-  assets: {}
+  assets:
+    fasta:
+      asset_class: fasta
+      default: fasta
+      description: fasta asset for genome
 container: docker.io/databio/refgenie
 default_tag: ''
 command_template_list:
-  - echo {{params.name}}
-  - echo {{params.size}}
+  - export name={{params.name}}
+  - export size={{params.size}}
 test:
   inputs:
     name: "MT"
