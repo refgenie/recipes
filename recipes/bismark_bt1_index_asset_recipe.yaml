@@ -4,7 +4,7 @@ output_asset_class: bismark_bt1_index
 description:
   Genome index for Bisulfite-Seq applications, produced by bismark_genome_preparation
   using bowtie1
-inputs_files: {}
+input_files: {}
 input_params: {}
 input_assets:
   fasta:
