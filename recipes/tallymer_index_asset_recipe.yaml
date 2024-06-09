@@ -4,28 +4,27 @@ output_asset_class: tallymer_index
 description:
   Indexed k-mers for a given enhanced suffix array at a fixed value of
   k
-inputs:
-  files: {}
-  params:
-    mersize:
-      default: "30"
-      description: The mer size.
-    minocc:
-      default: "2"
-      description: The minimum occurrence number for the mers to index.
-  assets:
-    suffixerator_index:
-      asset_class: suffixerator_index
-      default: suffixerator_index
-      description: enhanced suffix array index for genome
-    fasta:
-      asset_class: fasta
-      default: fasta
-      description: fasta asset for genome
-container: databio/refgenie
-command_template_list:
-  - gt tallymer mkindex -v -counts -pl -mersize {{params.mersize}} -minocc {{params.minocc}} -indexname {{asset_outfolder}}/{{genome}}.tal_{{params.mersize}} -esa {{assets.suffixerator_index}}/{{genome}}.sft
-  - gt tallymer search -output qseqnum qpos -strand fp -tyr {{asset_outfolder}}/{{genome}}.tal_{{params.mersize}} -q {{assets.fasta}} > {{asset_outfolder}}/{{genome}}.tal_{{params.mersize}}.gtTxt
+input_files: {}
+input_params:
+  mersize:
+    default: "30"
+    description: The mer size.
+  minocc:
+    default: "2"
+    description: The minimum occurrence number for the mers to index.
+input_assets:
+  suffixerator_index:
+    asset_class: suffixerator_index
+    default: suffixerator_index
+    description: enhanced suffix array index for genome
+  fasta:
+    asset_class: fasta
+    default: fasta
+    description: fasta asset for genome
+docker image: databio/refgenie
+command_templates:
+  - gt tallymer mkindex -v -counts -pl -mersize {{values.params["mersize"]}} -minocc {{values.params["minocc"]}} -indexname {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}} -esa {{values.assets["suffixerator_index"]}}.seek_keys_dict["esa"]}}
+  - gt tallymer search -output qseqnum qpos -strand fp -tyr {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}} -q {{values.assets["fasta"].seek_keys_dict["fasta"]}} > {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}}.gtTxt
 custom_properties:
   version: "gt tallymer --version | awk 'NR==1{print $4}'"
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"

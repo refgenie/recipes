@@ -2,20 +2,19 @@ name: bowtie1_index
 version: 0.0.1
 output_asset_class: bowtie1_index
 description: Genome index for bowtie, produced with bowtie-build
-inputs:
-  files: null
-  params:
-    threads:
-      description: Number of threads to use
-      default: 1
-  assets:
-    fasta:
-      asset_class: fasta
-      description: fasta asset for genome
-      default: fasta
-container: docker.io/databio/refgenie
-command_template_list:
-  - bowtie-build --threads {{params.threads}} {{assets.fasta}} {{asset_outfolder}}/{{genome}}
+input_files: null
+input_params:
+  threads:
+    description: Number of threads to use
+    default: 1
+input_assets:
+  fasta:
+    asset_class: fasta
+    description: fasta asset for genome
+    default: fasta
+docker image: docker.io/databio/refgenie
+command_templates:
+  - bowtie-build --threads {{values.params["threads"]}} {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
 custom_properties:
   version: bowtie-build --version | awk 'NR==1{print $3}'
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"

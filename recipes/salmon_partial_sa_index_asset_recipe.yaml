@@ -6,42 +6,41 @@ description:
   selective alignment method. Preparation includes transcriptome mapping to the genome
   and extraction of the relevant portion out from the genome and indexing it along
   with the transcriptome. Recipe source -- https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh
-inputs:
-  files: {}
-  params:
-    threads:
-      default: "8"
-      description: Number of threads to use for parallel computing
-    kmer:
-      default: "31"
-      description: The length of kmer to use to create the indices
-  assets:
-    fasta:
-      asset_class: fasta
-      default: fasta
-      description: fasta asset for genome
-    fasta_txome:
-      asset_class: fasta
-      default: fasta_txome
-      description: fasta asset for transcriptome
-    ensembl_gtf:
-      asset_class: gtf
-      default: ensembl_gtf
-      description: GTF file for exonic features extraction
-container: combinelab/salmon
-command_template_list:
-  - gunzip -c {gtf} > {{asset_outfolder}}/{{genome}}.gtf",
-  - awk -v OFS='\t' '{if ($3=="exon") {print $1,$4,$5}}' {{asset_outfolder}}/{{genome}}.gtf > {{asset_outfolder}}/exons.bed
-  - bedtools maskfasta -fi {fasta} -bed {{asset_outfolder}}/exons.bed -fo {{asset_outfolder}}/reference.masked.genome.fa
-  - mashmap -r {{asset_outfolder}}/reference.masked.genome.fa -q {fasta_txome} -t {threads} --pi 80 -s 500 -o {{asset_outfolder}}/mashmap.out
-  - awk -v OFS='\t' '{print $6,$8,$9}}' {{asset_outfolder}}/mashmap.out | sort -k1,1 -k2,2n - > {{asset_outfolder}}/genome_found.sorted.bed
-  - bedtools merge -i {{asset_outfolder}}/genome_found.sorted.bed > {{asset_outfolder}}/genome_found_merged.bed
-  - bedtools getfasta -fi {{asset_outfolder}}/reference.masked.genome.fa -bed {{asset_outfolder}}/genome_found_merged.bed -fo {{asset_outfolder}}/genome_found.fa
-  - awk '{{a=$0; getline;split(a, b, ":");  r[b[1]] = r[b[1]]""$0}} END {{ for (k in r) {{ print k"\\n"r[k] }} }}'{{asset_outfolder}}/genome_found.fa > {{asset_outfolder}}/decoy.fa
-  - cat {fasta_txome} {{asset_outfolder}}/decoy.fa > {{asset_outfolder}}/gentrome.fa
-  - grep '>' {{asset_outfolder}}/decoy.fa | awk '{print substr($1,2); }}' > {{asset_outfolder}}/decoys.txt
-  - rm {{asset_outfolder}}/exons.bed {{asset_outfolder}}/reference.masked.genome.fa {{asset_outfolder}}/mashmap.out {{asset_outfolder}}/genome_found.sorted.bed {{asset_outfolder}}/genome_found_merged.bed {{asset_outfolder}}/genome_found.fa {{asset_outfolder}}/decoy.fa {{asset_outfolder}}/reference.masked.genome.fa.fai
-  - salmon index -t {{asset_outfolder}}/gentrome.fa -d {{asset_outfolder}}/decoys.txt -i {asset_outfolder} -k {kmer} -p {threads}
+input_files: {}
+input_params:
+  threads:
+    default: "8"
+    description: Number of threads to use for parallel computing
+  kmer:
+    default: "31"
+    description: The length of kmer to use to create the indices
+input_assets:
+  fasta:
+    asset_class: fasta
+    default: fasta
+    description: fasta asset for genome
+  fasta_txome:
+    asset_class: fasta
+    default: fasta_txome
+    description: fasta asset for transcriptome
+  ensembl_gtf:
+    asset_class: gtf
+    default: ensembl_gtf
+    description: GTF file for exonic features extraction
+docker image: combinelab/salmon
+command_templates:
+  - gunzip -c {gtf} > {{values.output_folder}}/{{values.genome_digest}}.gtf",
+  - awk -v OFS='\t' '{if ($3=="exon") {print $1,$4,$5}}' {{values.output_folder}}/{{values.genome_digest}}.gtf > {{values.output_folder}}/exons.bed
+  - bedtools maskfasta -fi {fasta} -bed {{values.output_folder}}/exons.bed -fo {{values.output_folder}}/reference.masked.genome.fa
+  - mashmap -r {{values.output_folder}}/reference.masked.genome.fa -q {fasta_txome} -t {threads} --pi 80 -s 500 -o {{values.output_folder}}/mashmap.out
+  - awk -v OFS='\t' '{print $6,$8,$9}}' {{values.output_folder}}/mashmap.out | sort -k1,1 -k2,2n - > {{values.output_folder}}/genome_found.sorted.bed
+  - bedtools merge -i {{values.output_folder}}/genome_found.sorted.bed > {{values.output_folder}}/genome_found_merged.bed
+  - bedtools getfasta -fi {{values.output_folder}}/reference.masked.genome.fa -bed {{values.output_folder}}/genome_found_merged.bed -fo {{values.output_folder}}/genome_found.fa
+  - awk '{{a=$0; getline;split(a, b, ":");  r[b[1]] = r[b[1]]""$0}} END {{ for (k in r) {{ print k"\\n"r[k] }} }}'{{values.output_folder}}/genome_found.fa > {{values.output_folder}}/decoy.fa
+  - cat {fasta_txome} {{values.output_folder}}/decoy.fa > {{values.output_folder}}/gentrome.fa
+  - grep '>' {{values.output_folder}}/decoy.fa | awk '{print substr($1,2); }}' > {{values.output_folder}}/decoys.txt
+  - rm {{values.output_folder}}/exons.bed {{values.output_folder}}/reference.masked.genome.fa {{values.output_folder}}/mashmap.out {{values.output_folder}}/genome_found.sorted.bed {{values.output_folder}}/genome_found_merged.bed {{values.output_folder}}/genome_found.fa {{values.output_folder}}/decoy.fa {{values.output_folder}}/reference.masked.genome.fa.fai
+  - salmon index -t {{values.output_folder}}/gentrome.fa -d {{values.output_folder}}/decoys.txt -i {asset_outfolder} -k {kmer} -p {threads}
 custom_properties:
   version: salmon --version | awk '{print $2}'
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"

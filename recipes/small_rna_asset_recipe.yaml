@@ -2,18 +2,17 @@ name: small_rna
 version: 0.0.1
 output_asset_class: small_rna
 description: Small RNA sequences in the FASTA format. A predicted hairpin portion of a miRNA transcript and information on the location and sequence of the mature miRNA sequence
-inputs:
-  files:
-    hairpin:
-      description: FASTA format sequences of all miRNA hairpins
-    mature:
-      description: FASTA format sequences of all mature miRNA sequences
-  params: null
-  assets: null
-container: docker.io/databio/refgenie
-command_template_list:
-  - cp {{files.hairpin}} {{asset_outfolder}}/{{genome}}_hairpin.fa
-  - cp {{files.mature}} {{asset_outfolder}}/{{genome}}_mature.fa
+input_files:
+  hairpin:
+    description: FASTA format sequences of all miRNA hairpins
+  mature:
+    description: FASTA format sequences of all mature miRNA sequences
+input_params: null
+input_assets: null
+docker image: docker.io/databio/refgenie
+command_templates:
+  - cp {{values.files["hairpin"]}} {{values.output_folder}}/{{values.genome_digest}}_hairpin.fa
+  - cp {{values.files["mature"]}} {{values.output_folder}}/{{values.genome_digest}}_mature.fa
 custom_properties:
-  version: ''
-default_tag: '{{custom_properties.version}}'
+  version: ""
+default_tag: "{{values.custom_properties.version}}"

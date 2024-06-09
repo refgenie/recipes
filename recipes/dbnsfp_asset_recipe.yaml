@@ -5,28 +5,27 @@ description:
   A database developed for functional prediction and annotation of all
   potential non-synonymous single-nucleotide variants (nsSNVs) in the human genome
   (Gencode release 29/Ensembl 94)
-inputs:
-  files:
-    dbnsfp:
-      asset_class: dbnsfp
-      description: zipped dbNSFP database file
-  params:
-    threads:
-      default: "8"
-      description: Number of threads to use for parallel computing
-  assets: {}
-container: databio/refgenie
-command_template_list:
-  - cp {{files.dbnsfp}} {{asset_outfolder}}/{{genome}}.zip
-  - unzip {{asset_outfolder}}/{{genome}}.zip -d {{asset_outfolder}}
-  - gunzip -v {{asset_outfolder}}/*variant.chr*.gz
-  - head -n1 {{asset_outfolder}}/dbNSFP*_variant.chr1 > {{asset_outfolder}}/{{genome}}_dbNSFP.txt
-  - cat {{asset_outfolder}}/dbNSFP*variant.chr* | grep -v '#' >> {{asset_outfolder}}/{{genome}}_dbNSFP.txt
-  - rm {{asset_outfolder}}/dbNSFP*_variant.chr*
-  - bgzip -@ {{params.threads}} {{asset_outfolder}}/{{genome}}_dbNSFP.txt
-  - tabix -s 1 -b 2 -e 2 {{asset_outfolder}}/{{genome}}_dbNSFP.txt.gz
-  - rm `find {{asset_outfolder}} -type f -not -path '{{asset_outfolder}}/_refgenie_build*'
-    -not -path '{{asset_outfolder}}/{{genome}}_dbNSFP.txt.*'`
+input_files:
+  dbnsfp:
+    asset_class: dbnsfp
+    description: zipped dbNSFP database file
+input_params:
+  threads:
+    default: "8"
+    description: Number of threads to use for parallel computing
+input_assets: {}
+docker image: databio/refgenie
+command_templates:
+  - cp {{values.files["dbnsfp"]}} {{values.output_folder}}/{{values.genome_digest}}.zip
+  - unzip {{values.output_folder}}/{{values.genome_digest}}.zip -d {{values.output_folder}}
+  - gunzip -v {{values.output_folder}}/*variant.chr*.gz
+  - head -n1 {{values.output_folder}}/dbNSFP*_variant.chr1 > {{values.output_folder}}/{{values.genome_digest}}_dbNSFP.txt
+  - cat {{values.output_folder}}/dbNSFP*variant.chr* | grep -v '#' >> {{values.output_folder}}/{{values.genome_digest}}_dbNSFP.txt
+  - rm {{values.output_folder}}/dbNSFP*_variant.chr*
+  - bgzip -@ {{values.params["threads"]}} {{values.output_folder}}/{{values.genome_digest}}_dbNSFP.txt
+  - tabix -s 1 -b 2 -e 2 {{values.output_folder}}/{{values.genome_digest}}_dbNSFP.txt.gz
+  - rm `find {{values.output_folder}} -type f -not -path '{{values.output_folder}}/_refgenie_build*'
+    -not -path '{{values.output_folder}}/{{values.genome_digest}}_dbNSFP.txt.*'`
 custom_properties:
   version: tabix --version | awk '{print $3}' | head -1
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"

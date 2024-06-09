@@ -2,23 +2,22 @@ name: salmon_index
 version: 0.0.1
 output_asset_class: salmon_index
 description: Transcriptome index for salmon, produced with salmon index
-inputs:
-  files: {}
-  params:
-    threads:
-      default: "8"
-      description: Number of threads to use for parallel computing
-    kmer:
-      default: "31"
-      description: The length of kmer to use to create the indices
-  assets:
-    fasta:
-      asset_class: fasta
-      default: fasta
-      description: fasta asset for transcriptome
-container: combinelab/salmon
-command_template_list:
-  - salmon index -t {{assets.fasta}} -i {{asset_outfolder}} -k {{params.kmer}} -p {{params.threads}}
+input_files: {}
+input_params:
+  threads:
+    default: "8"
+    description: Number of threads to use for parallel computing
+  kmer:
+    default: "31"
+    description: The length of kmer to use to create the indices
+input_assets:
+  fasta:
+    asset_class: fasta
+    default: fasta
+    description: fasta asset for transcriptome
+docker image: combinelab/salmon
+command_templates:
+  - salmon index -t {{values.assets["fasta"].seek_keys_dict["fasta"]}} -i {{values.output_folder}} -k {{values.params["kmer"]}} -p {{values.params["threads"]}}
 custom_properties:
   version: salmon --version | awk '{print $2}'
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"

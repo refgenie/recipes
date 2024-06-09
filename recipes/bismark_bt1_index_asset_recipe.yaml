@@ -4,18 +4,17 @@ output_asset_class: bismark_bt1_index
 description:
   Genome index for Bisulfite-Seq applications, produced by bismark_genome_preparation
   using bowtie1
-inputs:
-  files: {}
-  params: {}
-  assets:
-    fasta:
-      asset_class: fasta
-      default: fasta
-      description: fasta asset for genome
-container: databio/refgenie
-command_template_list:
-  - ln -sf {{assets.fasta}} {{asset_outfolder}}
-  - bismark_genome_preparation {{asset_outfolder}}
+inputs_files: {}
+input_params: {}
+input_assets:
+  fasta:
+    asset_class: fasta
+    default: fasta
+    description: fasta asset for genome
+docker image: databio/refgenie
+command_templates:
+  - ln -sf {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}
+  - bismark_genome_preparation {{values.output_folder}}
 custom_properties:
   version: "bismark_genome_preparation --version | awk 'NR==4{print $5}' | cut -c2-"
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"

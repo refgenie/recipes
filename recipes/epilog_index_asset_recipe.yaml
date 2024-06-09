@@ -2,25 +2,24 @@ name: epilog_index
 version: 0.0.1
 output_asset_class: epilog_index
 description: Genome index for CpG sites, produced by the epilog DNA methylation caller
-inputs:
-  files: {}
-  params:
-    context:
-      default: CG
-      description:
-        Substring to index. One or more space-separated strings to index.
-        e.g. 'CG' or 'CG CA CT CC'
-  assets:
-    fasta:
-      asset_class: fasta
-      default: fasta
-      description: fasta asset for genome
-container: databio/refgenie
-command_template_list:
-  - epilog index -- --infile {{assets.fasta}} --outfile {{asset_outfolder}}/{{genome}}_{{params.context}}.tsv
-    --contexts {{params.ccontext}}
-  - bgzip {{asset_outfolder}}/{{genome}}_{{params.context}}.tsv
-  - tabix -s 1 -b 2 -e 2 {{asset_outfolder}}/{{genome}}_{{params.context}}.tsv.gz
+input_files: {}
+input_params:
+  context:
+    default: CG
+    description:
+      Substring to index. One or more space-separated strings to index.
+      e.g. 'CG' or 'CG CA CT CC'
+input_assets:
+  fasta:
+    asset_class: fasta
+    default: fasta
+    description: fasta asset for genome
+docker image: databio/refgenie
+command_templates:
+  - epilog index -- --infile {{values.assets["fasta"].seek_keys_dict["fasta"]}} --outfile {{values.output_folder}}/{{values.genome_digest}}_{{values.params["context"]}}.tsv
+    --contexts {{values.params["context"]}}
+  - bgzip {{values.output_folder}}/{{values.genome_digest}}_{{values.params["context"]}}.tsv
+  - tabix -s 1 -b 2 -e 2 {{values.output_folder}}/{{values.genome_digest}}_{{values.params["context"]}}.tsv.gz
 custom_properties:
   version: ""
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"

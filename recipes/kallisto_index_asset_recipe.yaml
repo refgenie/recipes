@@ -2,17 +2,16 @@ name: kallisto_index
 version: 0.0.1
 output_asset_class: kallisto_index
 description: Genome index for kallisto, produced with kallisto index
-inputs:
-  files: {}
-  params: {}
-  assets:
-    fasta:
-      asset_class: fasta
-      default: fasta
-      description: fasta asset for transcriptome
-container: databio/refgenie
-command_template_list:
-  - kallisto index -i {{asset_outfolder}}/{{genome}}_kallisto_index.idx {{assets.fasta}}
+input_files: {}
+input_params: {}
+input_assets:
+  fasta:
+    asset_class: fasta
+    default: fasta
+    description: fasta asset for transcriptome
+docker image: databio/refgenie
+command_templates:
+  - kallisto index -i {{values.output_folder}}/{{values.genome_digest}}_kallisto_index.idx {{values.assets["fasta"].seek_keys_dict["fasta"]}}
 custom_properties:
   version: "kallisto version | awk '{print $3}'"
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"

@@ -4,31 +4,18 @@ output_asset_class: fasta
 description:
   DNA sequences in the FASTA format, indexed FASTA (produced with samtools
   index), chromosome sizes file and FASTA dict (produced with samtools dict)
-inputs:
-  files:
-    fasta:
-      description: A FASTA file. Gzipped or not.
-  params: null
-  assets: null
-container: docker.io/databio/refgenie
-command_template_list:
-  - cp {{files.fasta}} {{asset_outfolder}}/{{genome}}.fa.gz
-  - if (file {{asset_outfolder}}/{{genome}}.fa.gz | grep -q compressed ) ; then gzip -df {{asset_outfolder}}/{{genome}}.fa.gz ; else mv {{asset_outfolder}}/{{genome}}.fa.gz {{asset_outfolder}}/{{genome}}.fa ; fi
-  - samtools faidx {{asset_outfolder}}/{{genome}}.fa
-  - cut -f 1,2 {{asset_outfolder}}/{{genome}}.fa.fai > {{asset_outfolder}}/{{genome}}.chrom.sizes
-  - cat {{asset_outfolder}}/{{genome}}.fa | samtools dict -o {{asset_outfolder}}/{{genome}}.dict
+input_files:
+  fasta:
+    description: A FASTA file. Gzipped or not.
+input_params: null
+input_assets: null
+docker image: docker.io/databio/refgenie
+command_templates:
+  - cp {{values.files["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}.fa.gz
+  - if (file {{values.output_folder}}/{{values.genome_digest}}.fa.gz | grep -q compressed ) ; then gzip -df {{values.output_folder}}/{{values.genome_digest}}.fa.gz ; else mv {{values.output_folder}}/{{values.genome_digest}}.fa.gz {{values.output_folder}}/{{values.genome_digest}}.fa ; fi
+  - samtools faidx {{values.output_folder}}/{{values.genome_digest}}.fa
+  - cut -f 1,2 {{values.output_folder}}/{{values.genome_digest}}.fa.fai > {{values.output_folder}}/{{values.genome_digest}}.chrom.sizes
+  - cat {{values.output_folder}}/{{values.genome_digest}}.fa | samtools dict -o {{values.output_folder}}/{{values.genome_digest}}.dict
 custom_properties:
   version: "samtools --version-only | awk -F+ '{print $1}'"
 default_tag: "samtools-{{custom_properties.version}}"
-test:
-  inputs:
-    fasta: http://big.databio.org/refgenie_raw/t7-fasta-fasta
-  outputs:
-    fasta:
-      md5sum: e2f817b80cc40a127f93e09c919df543
-    fai:
-      md5sum: 2e472497cd289842682ebda217eaa020
-    dict:
-      md5sum: caf5d88cb49043143592576e91c27802
-    chrom_sizes:
-      md5sum: 7f0b08ef95859b76caf7e16bf1e97188

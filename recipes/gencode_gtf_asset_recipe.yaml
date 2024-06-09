@@ -2,13 +2,12 @@ name: gtf
 version: 0.0.1
 output_asset_class: gtf
 description: GTF annotation asset which provides access to all annotated transcripts
-inputs:
-  files:
-    gtf:
-      description: Annotation file in Gene Transfer Format (GTF) from Gencode
-  params: {}
-  assets: {}
-container: databio/refgenie
-command_template_list:
-  - cp {{files.gtf}} {{asset_outfolder}}/{{genome}}.gtf.gz
+input_files:
+  gtf:
+    description: Annotation file in Gene Transfer Format (GTF) from Gencode
+input_params: {}
+input_assets: {}
+docker image: databio/refgenie
+command_templates:
+  - cp {{values.files["gtf"]}} {{values.output_folder}}/{{values.genome_digest}}.gtf.gz
 default_tag: "default"

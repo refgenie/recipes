@@ -2,18 +2,17 @@ name: bwa_index
 version: 0.0.1
 output_asset_class: bwa_index
 description: Genome index for Burrows-Wheeler Alignment Tool, produced with bwa index
-inputs:
-  files: {}
-  params: {}
-  assets:
-    fasta:
-      asset_class: fasta
-      default: fasta
-      description: fasta asset for genome
-container: databio/refgenie
-command_template_list:
-  - ln -sf {{assets.fasta}} {{asset_outfolder}}
-  - bwa index {{asset_outfolder}}/{{genome}}.fa
+input_files: {}
+input_params: {}
+input_assets:
+  fasta:
+    asset_class: fasta
+    default: fasta
+    description: fasta asset for genome
+docker image: databio/refgenie
+command_templates:
+  - ln -sf {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}
+  - bwa index {{values.output_folder}}/{{values.genome_digest}}.fa
 custom_properties:
   version: "bwa 2>&1 | awk 'NR==4{print $2}' | awk -F- '{print $1}'" # uses stderr: monitor this issue https://github.com/lh3/bwa/issues/202
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{values.custom_properties.version}}"
