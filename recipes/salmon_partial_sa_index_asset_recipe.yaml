@@ -27,7 +27,7 @@ input_assets:
     asset_class: gtf
     default: ensembl_gtf
     description: GTF file for exonic features extraction
-docker image: combinelab/salmon
+docker_image: combinelab/salmon
 command_templates:
   - gunzip -c {gtf} > {{values.output_folder}}/{{values.genome_digest}}.gtf",
   - awk -v OFS='\t' '{if ($3=="exon") {print $1,$4,$5}}' {{values.output_folder}}/{{values.genome_digest}}.gtf > {{values.output_folder}}/exons.bed

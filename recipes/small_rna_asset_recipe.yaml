@@ -9,7 +9,7 @@ input_files:
     description: FASTA format sequences of all mature miRNA sequences
 input_params: null
 input_assets: null
-docker image: docker.io/databio/refgenie
+docker_image: docker.io/databio/refgenie
 command_templates:
   - cp {{values.files["hairpin"]}} {{values.output_folder}}/{{values.genome_digest}}_hairpin.fa
   - cp {{values.files["mature"]}} {{values.output_folder}}/{{values.genome_digest}}_mature.fa

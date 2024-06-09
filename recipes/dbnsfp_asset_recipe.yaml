@@ -14,7 +14,7 @@ input_params:
     default: "8"
     description: Number of threads to use for parallel computing
 input_assets: {}
-docker image: databio/refgenie
+docker_image: databio/refgenie
 command_templates:
   - cp {{values.files["dbnsfp"]}} {{values.output_folder}}/{{values.genome_digest}}.zip
   - unzip {{values.output_folder}}/{{values.genome_digest}}.zip -d {{values.output_folder}}

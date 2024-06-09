@@ -21,7 +21,7 @@ input_assets:
     asset_class: fasta
     default: fasta_txome
     description: fasta asset for transcriptome
-docker image: combinelab/salmon
+docker_image: combinelab/salmon
 command_templates:
   - grep '^>' {{values.files["fasta"]}} | cut -d ' ' -f 1 > {{values.output_folder}}/decoys.txt
   - sed -i.bak -e 's/>//g' {{values.output_folder}}/decoys.txt

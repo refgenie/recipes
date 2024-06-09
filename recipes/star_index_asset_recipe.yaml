@@ -12,7 +12,7 @@ input_assets:
     asset_class: fasta
     default: fasta
     description: fasta asset for genome
-docker image: databio/refgenie
+docker_image: databio/refgenie
 command_templates:
   - mkdir -p {{values.output_folder}}
   - STAR --runThreadN {{values.params["threads"]}} --runMode genomeGenerate --genomeDir {{values.output_folder}} --genomeFastaFiles {{values.assets["fasta"].seek_keys_dict["fasta"]}}

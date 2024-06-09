@@ -15,7 +15,7 @@ input_assets:
     asset_class: fasta
     default: fasta
     description: fasta asset for genome
-docker image: databio/refgenie
+docker_image: databio/refgenie
 command_templates:
   - gt suffixerator -dna -pl -tis -suf -lcp -v -showprogress -memlimit {{values.params["memlimit"]}} -db {{values.assets["fasta"].seek_keys_dict["fasta"]}} -indexname {{values.output_folder}}/{{values.genome_digest}}.sft
 custom_properties:

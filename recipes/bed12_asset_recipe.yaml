@@ -7,7 +7,7 @@ input_files:
     description: Genomic feature annotations in gzipped Browser Extensible Data (BED12) format
 input_assets: {}
 input_params: {}
-docker image: databio/refgenie
+docker_image: databio/refgenie
 command_templates:
   - cp {{values.files["bedgz"]}} {{values.output_folder}}/{{values.genome_digest}}.bed.gz
 default_tag: "default"

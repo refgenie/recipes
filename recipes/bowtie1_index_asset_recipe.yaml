@@ -12,7 +12,7 @@ input_assets:
     asset_class: fasta
     description: fasta asset for genome
     default: fasta
-docker image: docker.io/databio/refgenie
+docker_image: docker.io/databio/refgenie
 command_templates:
   - bowtie-build --threads {{values.params["threads"]}} {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
 custom_properties:

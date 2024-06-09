@@ -21,7 +21,7 @@ input_assets:
     asset_class: fasta
     default: fasta
     description: fasta asset for genome
-docker image: databio/refgenie
+docker_image: databio/refgenie
 command_templates:
   - gt tallymer mkindex -v -counts -pl -mersize {{values.params["mersize"]}} -minocc {{values.params["minocc"]}} -indexname {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}} -esa {{values.assets["suffixerator_index"]}}.seek_keys_dict["esa"]}}
   - gt tallymer search -output qseqnum qpos -strand fp -tyr {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}} -q {{values.assets["fasta"].seek_keys_dict["fasta"]}} > {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}}.gtTxt

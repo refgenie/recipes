@@ -9,7 +9,7 @@ input_files:
     description: A FASTA file. Gzipped or not.
 input_params: null
 input_assets: null
-docker image: docker.io/databio/refgenie
+docker_image: docker.io/databio/refgenie
 command_templates:
   - cp {{values.files["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}.fa.gz
   - if (file {{values.output_folder}}/{{values.genome_digest}}.fa.gz | grep -q compressed ) ; then gzip -df {{values.output_folder}}/{{values.genome_digest}}.fa.gz ; else mv {{values.output_folder}}/{{values.genome_digest}}.fa.gz {{values.output_folder}}/{{values.genome_digest}}.fa ; fi

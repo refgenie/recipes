@@ -9,7 +9,7 @@ input_assets:
     asset_class: fasta
     default: fasta
     description: fasta asset for transcriptome
-docker image: databio/refgenie
+docker_image: databio/refgenie
 command_templates:
   - kallisto index -i {{values.output_folder}}/{{values.genome_digest}}_kallisto_index.idx {{values.assets["fasta"].seek_keys_dict["fasta"]}}
 custom_properties:

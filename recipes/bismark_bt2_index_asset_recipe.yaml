@@ -11,7 +11,7 @@ input_assets:
     asset_class: fasta
     default: fasta
     description: fasta asset for genome
-docker image: databio/refgenie
+docker_image: databio/refgenie
 command_templates:
   - ln -sf {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}
   - bismark_genome_preparation --bowtie2 {{values.output_folder}}

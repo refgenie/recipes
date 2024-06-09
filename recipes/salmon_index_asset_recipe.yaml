@@ -15,7 +15,7 @@ input_assets:
     asset_class: fasta
     default: fasta
     description: fasta asset for transcriptome
-docker image: combinelab/salmon
+docker_image: combinelab/salmon
 command_templates:
   - salmon index -t {{values.assets["fasta"].seek_keys_dict["fasta"]}} -i {{values.output_folder}} -k {{values.params["kmer"]}} -p {{values.params["threads"]}}
 custom_properties:
