@@ -12,7 +12,7 @@ input_assets:
     default: ensembl_gtf
     description: Annotation file in Gene Transfer Format (GTF) from Ensembl
   ensembl_rb:
-    asset_class: rb
+    asset_class: ensembl_rb
     default: ensembl_rb
     description: Regulatory annotation file in General Feature Format (GTF) from
       Ensembl
