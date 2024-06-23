@@ -7,11 +7,11 @@ input_params: {}
 input_assets:
   fasta:
     asset_class: fasta
-    default: fasta
     description: fasta asset for genome
+    default: fasta
 docker_image: databio/refgenie
 command_templates:
-  - ln -sf {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}
+  - ln -sf {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}
   - bwa index {{values.output_folder}}/{{values.genome_digest}}.fa
 custom_properties:
   version: "bwa 2>&1 | awk 'NR==3{print $2}' | awk -F- '{print $1}'" # uses stderr: monitor this issue https://github.com/lh3/bwa/issues/202
