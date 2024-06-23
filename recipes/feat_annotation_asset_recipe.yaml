@@ -28,4 +28,4 @@ command_templates:
   - cat {{values.output_folder}}/{{values.genome_digest}}_enhancer.bed {{values.output_folder}}/{{values.genome_digest}}_promoter.bed {{values.output_folder}}/{{values.genome_digest}}_promoter_flanking.bed {{values.output_folder}}/{{values.genome_digest}}_5utr.bed {{values.output_folder}}/{{values.genome_digest}}_3utr.bed {{values.output_folder}}/{{values.genome_digest}}_exons.bed {{values.output_folder}}/{{values.genome_digest}}_introns.bed | awk -F'\t' '!seen[$1, $2, $3]++' > {{values.output_folder}}/{{values.genome_digest}}_annotations.bed
   - rm -f {{values.output_folder}}/{{values.genome_digest}}_enhancer.bed {{values.output_folder}}/{{values.genome_digest}}_promoter.bed {{values.output_folder}}/{{values.genome_digest}}_promoter_flanking.bed {{values.output_folder}}/{{values.genome_digest}}_5utr.bed {{values.output_folder}}/{{values.genome_digest}}_3utr.bed {{values.output_folder}}/{{values.genome_digest}}_exons.bed {{values.output_folder}}/{{values.genome_digest}}_introns.bed
   - gzip -f {{values.output_folder}}/{{values.genome_digest}}_annotations.bed
-default_tag: "default"
+default_asset: "default"

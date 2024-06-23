@@ -17,4 +17,4 @@ command_templates:
   - cut -f 1,2 {{values.output_folder}}/{{values.genome_digest}}.fa.fai > {{values.output_folder}}/{{values.genome_digest}}.chrom.sizes
 custom_properties:
   version: "samtools --version-only"
-default_tag: "{{values.custom_properties.version}}"
+default_asset: "{{values.custom_properties.version}}"

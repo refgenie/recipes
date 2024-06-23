@@ -16,4 +16,4 @@ docker_image: databio/refgenie
 command_templates:
   - cp {{values.files["dbsnp_vcf"]}} {{values.output_folder}}/{{values.genome_digest}}_dbSNP.gz
   - cp {{values.files["dbsnp_tbi"]}} {{values.output_folder}}/{{values.genome_digest}}_dbSNP.gz.tbi
-default_tag: "default"
+default_asset: "default"

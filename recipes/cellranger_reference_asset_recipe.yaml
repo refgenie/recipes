@@ -27,4 +27,4 @@ command_templates:
     --nthreads={{values.params["threads"]}}
 custom_properties:
   version: "cellranger mkref --version | awk 'NR==6{print $3}'"
-default_tag: "{{values.custom_properties.version}}"
+default_asset: "{{values.custom_properties.version}}"

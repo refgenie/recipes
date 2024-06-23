@@ -14,4 +14,4 @@ command_templates:
   - hisat2-build {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
 custom_properties:
   version: "hisat2-build --version | awk 'NR==5{print $4}'"
-default_tag: "{{values.custom_properties.version}}"
+default_asset: "{{values.custom_properties.version}}"

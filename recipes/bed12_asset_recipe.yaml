@@ -10,4 +10,4 @@ input_params: {}
 docker_image: databio/refgenie
 command_templates:
   - cp {{values.files["bedgz"]}} {{values.output_folder}}/{{values.genome_digest}}.bed.gz
-default_tag: "default"
+default_asset: "default"

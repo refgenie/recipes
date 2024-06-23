@@ -10,4 +10,4 @@ input_assets: {}
 docker_image: databio/refgenie
 command_templates:
   - cp {{values.files["gtf"]}} {{values.output_folder}}/{{values.genome_digest}}.gtf.gz
-default_tag: "default"
+default_asset: "default"

@@ -22,4 +22,4 @@ command_templates:
   - tabix -s 1 -b 2 -e 2 {{values.output_folder}}/{{values.genome_digest}}_{{values.params["context"]}}.tsv.gz
 custom_properties:
   version: ""
-default_tag: "{{values.custom_properties.version}}"
+default_asset: "{{values.custom_properties.version}}"
