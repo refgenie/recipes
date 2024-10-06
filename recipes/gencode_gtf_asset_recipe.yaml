@@ -1,4 +1,4 @@
-name: gtf
+name: gencode_gtf
 version: 0.0.1
 output_asset_class: gtf
 description: GTF annotation asset which provides access to all annotated transcripts

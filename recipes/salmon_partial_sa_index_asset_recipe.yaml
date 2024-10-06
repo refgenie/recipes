@@ -23,7 +23,7 @@ input_assets:
     asset_class: fasta_txome
     default: fasta_txome
     description: fasta asset for transcriptome
-  ensembl_gtf:
+  gtf:
     asset_class: gtf
     default: ensembl_gtf
     description: GTF file for exonic features extraction
