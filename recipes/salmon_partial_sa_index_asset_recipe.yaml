@@ -29,18 +29,18 @@ input_assets:
     description: GTF file for exonic features extraction
 docker_image: combinelab/salmon
 command_templates:
-  - gunzip -c {gtf} > {{values.output_folder}}/{{values.genome_digest}}.gtf",
+  - gunzip -c {{values.assets["gtf"].seek_keys_dict["gtf"]}} > {{values.output_folder}}/{{values.genome_digest}}.gtf",
   - awk -v OFS='\t' '{if ($3=="exon") {print $1,$4,$5}}' {{values.output_folder}}/{{values.genome_digest}}.gtf > {{values.output_folder}}/exons.bed
-  - bedtools maskfasta -fi {fasta} -bed {{values.output_folder}}/exons.bed -fo {{values.output_folder}}/reference.masked.genome.fa
-  - mashmap -r {{values.output_folder}}/reference.masked.genome.fa -q {fasta_txome} -t {threads} --pi 80 -s 500 -o {{values.output_folder}}/mashmap.out
+  - bedtools maskfasta -fi {{values.assets["fasta"].seek_keys_dict["fasta"]}} -bed {{values.output_folder}}/exons.bed -fo {{values.output_folder}}/reference.masked.genome.fa
+  - mashmap -r {{values.output_folder}}/reference.masked.genome.fa -q {{values.assets["fasta_txome"].seek_keys_dict["fasta"]}} -t {threads} --pi 80 -s 500 -o {{values.output_folder}}/mashmap.out
   - awk -v OFS='\t' '{print $6,$8,$9}}' {{values.output_folder}}/mashmap.out | sort -k1,1 -k2,2n - > {{values.output_folder}}/genome_found.sorted.bed
   - bedtools merge -i {{values.output_folder}}/genome_found.sorted.bed > {{values.output_folder}}/genome_found_merged.bed
   - bedtools getfasta -fi {{values.output_folder}}/reference.masked.genome.fa -bed {{values.output_folder}}/genome_found_merged.bed -fo {{values.output_folder}}/genome_found.fa
   - awk '{{a=$0; getline;split(a, b, ":");  r[b[1]] = r[b[1]]""$0}} END {{ for (k in r) {{ print k"\\n"r[k] }} }}'{{values.output_folder}}/genome_found.fa > {{values.output_folder}}/decoy.fa
-  - cat {fasta_txome} {{values.output_folder}}/decoy.fa > {{values.output_folder}}/gentrome.fa
+  - cat {{values.assets["fasta_txome"].seek_keys_dict["fasta"]}} {{values.output_folder}}/decoy.fa > {{values.output_folder}}/gentrome.fa
   - grep '>' {{values.output_folder}}/decoy.fa | awk '{print substr($1,2); }}' > {{values.output_folder}}/decoys.txt
   - rm {{values.output_folder}}/exons.bed {{values.output_folder}}/reference.masked.genome.fa {{values.output_folder}}/mashmap.out {{values.output_folder}}/genome_found.sorted.bed {{values.output_folder}}/genome_found_merged.bed {{values.output_folder}}/genome_found.fa {{values.output_folder}}/decoy.fa {{values.output_folder}}/reference.masked.genome.fa.fai
-  - salmon index -t {{values.output_folder}}/gentrome.fa -d {{values.output_folder}}/decoys.txt -i {asset_outfolder} -k {kmer} -p {threads}
+  - salmon index -t {{values.output_folder}}/gentrome.fa -d {{values.output_folder}}/decoys.txt -i {{values.output_folder}} -k {{values.params["kmer"]}} -p {{values.params["threads"]}}
 custom_properties:
   version: salmon --version | awk '{print $2}'
 default_asset: "{{values.custom_properties.version}}"
