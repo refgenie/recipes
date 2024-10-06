@@ -20,7 +20,7 @@ input_assets:
     default: fasta
     description: fasta asset for genome
   fasta_txome:
-    asset_class: fasta_txome
+    asset_class: fasta
     default: fasta_txome
     description: fasta asset for transcriptome
   gtf:
