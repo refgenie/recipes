@@ -17,4 +17,4 @@ command_templates:
   - bismark_genome_preparation {{values.output_folder}}
 custom_properties:
   version: "bismark_genome_preparation --version | awk 'NR==4{print $5}' | cut -c2-"
-default_asset: "{{values.custom_properties.version}}"
+default_asset: "{{custom_properties.version}}"

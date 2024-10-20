@@ -14,4 +14,4 @@ command_templates:
   - kallisto index -i {{values.output_folder}}/{{values.genome_digest}}_kallisto_index.idx {{values.assets["fasta"].seek_keys_dict["fasta"]}}
 custom_properties:
   version: "kallisto version | awk '{print $3}'"
-default_asset: "{{values.custom_properties.version}}"
+default_asset: "{{custom_properties.version}}"

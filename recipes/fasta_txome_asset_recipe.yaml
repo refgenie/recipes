@@ -16,5 +16,5 @@ command_templates:
   - samtools faidx {{values.output_folder}}/{{values.genome_digest}}.fa
   - cut -f 1,2 {{values.output_folder}}/{{values.genome_digest}}.fa.fai > {{values.output_folder}}/{{values.genome_digest}}.chrom.sizes
 custom_properties:
-  version: "samtools --version-only"
-default_asset: "{{values.custom_properties.version}}"
+  version: "samtools --version-only | awk -F+ '{print $1}'"
+default_asset: "{{custom_properties.version}}"

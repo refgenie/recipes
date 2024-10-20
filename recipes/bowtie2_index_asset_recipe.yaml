@@ -17,4 +17,4 @@ command_templates:
   - bowtie2-build --threads {{values.params["threads"]}} {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
 custom_properties:
   version: bowtie2 --version | awk 'NR==1{print $3}'
-default_asset: "{{values.custom_properties.version}}"
+default_asset: "{{custom_properties.version}}"
