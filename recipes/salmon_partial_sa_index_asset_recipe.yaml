@@ -29,7 +29,7 @@ input_assets:
     description: GTF file for exonic features extraction
 docker_image: combinelab/salmon
 command_templates:
-  - gunzip -c {{values.assets["gtf"].seek_keys_dict["gtf"]}} > {{values.output_folder}}/{{values.genome_digest}}.gtf",
+  - gunzip -c {{values.assets["ensembl_gtf"].seek_keys_dict["ensembl_gtf"]}} > {{values.output_folder}}/{{values.genome_digest}}.gtf",
   - awk -v OFS='\t' '{if ($3=="exon") {print $1,$4,$5}}' {{values.output_folder}}/{{values.genome_digest}}.gtf > {{values.output_folder}}/exons.bed
   - bedtools maskfasta -fi {{values.assets["fasta"].seek_keys_dict["fasta"]}} -bed {{values.output_folder}}/exons.bed -fo {{values.output_folder}}/reference.masked.genome.fa
   - mashmap -r {{values.output_folder}}/reference.masked.genome.fa -q {{values.assets["fasta_txome"].seek_keys_dict["fasta"]}} -t {threads} --pi 80 -s 500 -o {{values.output_folder}}/mashmap.out
