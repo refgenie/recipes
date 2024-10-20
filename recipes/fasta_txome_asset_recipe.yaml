@@ -6,7 +6,7 @@ description:
   index) and chromosome sizes file
 input_files:
   fasta_txome:
-    description: gzipped fasta file
+    description: A taxome FASTA file. Gzipped or not.
 input_params: {}
 input_assets: {}
 docker_image: docker.io/databio/refgenie
