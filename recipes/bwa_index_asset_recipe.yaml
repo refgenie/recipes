@@ -15,4 +15,4 @@ command_templates:
   - bwa index {{values.output_folder}}/{{values.genome_digest}}.fa
 custom_properties:
   version: "bwa 2>&1 | grep Version | cut -d' ' -f2 | awk -F- '{print $1}'" # uses stderr monitor this issue https://github.com/lh3/bwa/issues/202
-default_asset: "{{values.custom_properties.version}"
+default_asset: "{{values.custom_properties.version}}"

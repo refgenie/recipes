@@ -20,4 +20,4 @@ command_templates:
   - salmon index -t {{values.assets["fasta"].seek_keys_dict["fasta"]}} -i {{values.output_folder}} -k {{values.params["kmer"]}} -p {{values.params["threads"]}}
 custom_properties:
   version: salmon --version | awk '{print $2}'
-default_asset: "{{values.custom_properties.version}"
+default_asset: "{{values.custom_properties.version}}"

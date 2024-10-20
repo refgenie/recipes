@@ -27,4 +27,4 @@ command_templates:
   - gt tallymer search -output qseqnum qpos -strand fp -tyr {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}} -q {{values.assets["fasta"].seek_keys_dict["fasta"]}} > {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}}.gtTxt
 custom_properties:
   version: "gt tallymer --version | awk 'NR==1{print $4}'"
-default_asset: "{{values.custom_properties.version}"
+default_asset: "{{values.custom_properties.version}}"

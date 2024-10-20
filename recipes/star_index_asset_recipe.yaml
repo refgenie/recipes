@@ -18,4 +18,4 @@ command_templates:
   - STAR --runThreadN {{values.params["threads"]}} --runMode genomeGenerate --genomeDir {{values.output_folder}} --genomeFastaFiles {{values.assets["fasta"].seek_keys_dict["fasta"]}}
 custom_properties:
   version: "STAR --version"
-default_asset: "{{values.custom_properties.version}"
+default_asset: "{{values.custom_properties.version}}"

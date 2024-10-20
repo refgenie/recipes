@@ -31,4 +31,4 @@ command_templates:
   - rm {{values.output_folder}}/gentrome.fa {{values.output_folder}}/decoys.txt
 custom_properties:
   version: salmon --version | awk '{print $2}'
-default_asset: "{{values.custom_properties.version}"
+default_asset: "{{values.custom_properties.version}}"
