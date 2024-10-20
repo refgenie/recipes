@@ -12,7 +12,7 @@ input_assets: {}
 docker_image: databio/refgenie
 command_templates:
   - cp {{values.files["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}.fa.gz
-  - gzip -df {{values.output_folder}}/{{values.genome_digest}}.fa.gz
+  - if (file {{values.output_folder}}/{{values.genome_digest}}.fa.gz | grep -q compressed ) ; then gzip -df {{values.output_folder}}/{{values.genome_digest}}.fa.gz ; else mv {{values.output_folder}}/{{values.genome_digest}}.fa.gz {{values.output_folder}}/{{values.genome_digest}}.fa ; fi
   - samtools faidx {{values.output_folder}}/{{values.genome_digest}}.fa
   - cut -f 1,2 {{values.output_folder}}/{{values.genome_digest}}.fa.fai > {{values.output_folder}}/{{values.genome_digest}}.chrom.sizes
 custom_properties:
