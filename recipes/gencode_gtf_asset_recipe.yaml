@@ -3,7 +3,7 @@ version: 0.0.1
 output_asset_class: gtf
 description: GTF annotation asset which provides access to all annotated transcripts
 input_files:
-  gtf:
+  gencode_gtf:
     description: Annotation file in Gene Transfer Format (GTF) from Gencode
 input_params: {}
 input_assets: {}

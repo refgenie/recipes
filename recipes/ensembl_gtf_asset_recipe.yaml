@@ -3,7 +3,7 @@ version: 0.0.1
 output_asset_class: gtf
 description: Ensembl GTF, TSS, and gene body annotation
 input_files:
-  gtf:
+  ensembl_gtf:
     description: Annotation file in Gene Transfer Format (GTF) from Ensembl
 input_params: {}
 input_assets: {}
