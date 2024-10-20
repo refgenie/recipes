@@ -5,7 +5,7 @@ description:
   cDNA sequences in the FASTA format, indexed FASTA (produced with samtools
   index) and chromosome sizes file
 input_files:
-  fasta:
+  fasta_txome:
     description: gzipped fasta file
 input_params: {}
 input_assets: {}
@@ -17,4 +17,4 @@ command_templates:
   - cut -f 1,2 {{values.output_folder}}/{{values.genome_digest}}.fa.fai > {{values.output_folder}}/{{values.genome_digest}}.chrom.sizes
 custom_properties:
   version: "samtools --version-only | awk -F+ '{print $1}'"
-default_asset: "{{values.custom_properties.version}}"
+default_asset: "samtools-{{values.custom_properties.version}"
