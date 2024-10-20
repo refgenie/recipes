@@ -18,4 +18,4 @@ command_templates:
   - cat {{values.output_folder}}/{{values.genome_digest}}.fa | samtools dict -o {{values.output_folder}}/{{values.genome_digest}}.dict
 custom_properties:
   version: "samtools --version-only | awk -F+ '{print $1}'"
-default_asset: "samtools-{{values.custom_properties.version}"
+default_asset: "samtools-{{values.custom_properties.version}}"
