@@ -10,7 +10,7 @@ input_params:
     default: "8"
     description: Number of threads to use for parallel computing
 input_assets:
-  gtf:
+  gencode_gtf:
     asset_class: gtf
     default: gencode_gtf
     description: Annotation file in Gene Transfer Format (GTF) from Gencode

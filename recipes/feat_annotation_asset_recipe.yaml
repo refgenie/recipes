@@ -7,7 +7,7 @@ description:
 input_files: {}
 input_params: {}
 input_assets:
-  gtf:
+  ensembl_gtf:
     asset_class: gtf
     default: ensembl_gtf
     description: Annotation file in Gene Transfer Format (GTF) from Ensembl
