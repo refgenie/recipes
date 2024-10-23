@@ -1,6 +1,6 @@
 name: fasta_txome
 version: 0.0.1
-output_asset_class: fasta_txome
+output_asset_class: fasta
 description:
   cDNA sequences in the FASTA format, indexed FASTA (produced with samtools
   index) and chromosome sizes file
