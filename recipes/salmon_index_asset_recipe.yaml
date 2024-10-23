@@ -11,9 +11,9 @@ input_params:
     default: "31"
     description: The length of kmer to use to create the indices
 input_assets:
-  fasta:
-    asset_class: fasta
-    default: fasta
+  fasta_txome:
+    asset_class: fasta_txome
+    default: fasta_txome
     description: fasta asset for transcriptome
 docker_image: combinelab/salmon
 command_templates:

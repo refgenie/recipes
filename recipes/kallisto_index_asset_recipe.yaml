@@ -5,9 +5,9 @@ description: Genome index for kallisto, produced with kallisto index
 input_files: {}
 input_params: {}
 input_assets:
-  fasta:
-    asset_class: fasta
-    default: fasta
+  fasta_txome:
+    asset_class: fasta_txome
+    default: fasta_txome
     description: fasta asset for transcriptome
 docker_image: databio/refgenie
 command_templates:
