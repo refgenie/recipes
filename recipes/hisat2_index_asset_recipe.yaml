@@ -11,7 +11,7 @@ input_assets:
     description: fasta asset for genome
 docker_image: databio/refgenie
 command_templates:
-  - hisat2-build {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
+  - hisat2-build {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
 custom_properties:
   version: "hisat2-build --version | awk 'NR==5{print $4}'"
 default_asset: "{{values.custom_properties.version}}"

@@ -23,10 +23,10 @@ input_assets:
     description: fasta asset for transcriptome
 docker_image: combinelab/salmon
 command_templates:
-  - grep '^>' {{values.files["fasta"]}} | cut -d ' ' -f 1 > {{values.output_folder}}/decoys.txt
+  - grep '^>' {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} | cut -d ' ' -f 1 > {{values.output_folder}}/decoys.txt
   - sed -i.bak -e 's/>//g' {{values.output_folder}}/decoys.txt
   - rm {{values.output_folder}}/decoys.txt.bak
-  - cat {{values.files["fasta_txome"]}} {{values.files["fasta"]}} > {{values.output_folder}}/gentrome.fa
+  - cat {{values.genome_folder}}/{{values.assets["fasta_txome"].seek_keys_dict["fasta"]}} {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} > {{values.output_folder}}/gentrome.fa
   - salmon index -t {{values.output_folder}}/gentrome.fa -d {{values.output_folder}}/decoys.txt -i {{values.output_folder}} -k {{values.params["kmer"]}} -p {{values.params["threads"]}}
   - rm {{values.output_folder}}/gentrome.fa {{values.output_folder}}/decoys.txt
 custom_properties:

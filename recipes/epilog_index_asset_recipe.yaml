@@ -16,7 +16,7 @@ input_assets:
     description: fasta asset for genome
 docker_image: databio/refgenie
 command_templates:
-  - epilog index -- --infile {{values.assets["fasta"].seek_keys_dict["fasta"]}} --outfile {{values.output_folder}}/{{values.genome_digest}}_{{values.params["context"]}}.tsv
+  - epilog index -- --infile {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} --outfile {{values.output_folder}}/{{values.genome_digest}}_{{values.params["context"]}}.tsv
     --contexts {{values.params["context"]}}
   - bgzip {{values.output_folder}}/{{values.genome_digest}}_{{values.params["context"]}}.tsv
   - tabix -s 1 -b 2 -e 2 {{values.output_folder}}/{{values.genome_digest}}_{{values.params["context"]}}.tsv.gz

@@ -14,7 +14,7 @@ input_assets:
     default: fasta
 docker_image: docker.io/databio/refgenie
 command_templates:
-  - bowtie-build --threads {{values.params["threads"]}} {{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
+  - bowtie-build --threads {{values.params["threads"]}} {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
 custom_properties:
   version: bowtie-build --version | awk 'NR==1{print $3}'
 default_asset: "{{values.custom_properties.version}}"
