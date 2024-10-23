@@ -15,6 +15,7 @@ command_templates:
   - if (file {{values.output_folder}}/{{values.genome_digest}}.fa.gz | grep -q compressed ) ; then gzip -df {{values.output_folder}}/{{values.genome_digest}}.fa.gz ; else mv {{values.output_folder}}/{{values.genome_digest}}.fa.gz {{values.output_folder}}/{{values.genome_digest}}.fa ; fi
   - samtools faidx {{values.output_folder}}/{{values.genome_digest}}.fa
   - cut -f 1,2 {{values.output_folder}}/{{values.genome_digest}}.fa.fai > {{values.output_folder}}/{{values.genome_digest}}.chrom.sizes
+  - cat {{values.output_folder}}/{{values.genome_digest}}.fa | samtools dict -o {{values.output_folder}}/{{values.genome_digest}}.dict
 custom_properties:
   version: "samtools --version-only | awk -F+ '{print $1}'"
 default_asset: "samtools-{{values.custom_properties.version}}"
