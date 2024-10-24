@@ -6,6 +6,6 @@ description:
 seek_keys:
   esa:
     value: "{genome}.sft"
-    type: file
+    type: prefix
     description: Suffix array file
 parents: []
