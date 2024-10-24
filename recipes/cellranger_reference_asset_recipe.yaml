@@ -20,7 +20,7 @@ input_assets:
     description: fasta asset for genome
 docker_image: databio/refgenie
 command_templates:
-  - gunzip {{values.assets["gencode_gtf"].seek_keys_dict["gencode_gtf"]}} -c > {{values.output_folder}}/{{values.genome_digest}}.gtf
+  - gunzip {{values.assets["gencode_gtf"].seek_keys_dict["gtf"]}} -c > {{values.output_folder}}/{{values.genome_digest}}.gtf
   - cellranger mkgtf {{values.output_folder}}/{{values.genome_digest}}.gtf {{values.output_folder}}/{{values.genome_digest}}_filtered.gtf
   - rm {{values.output_folder}}/{{values.genome_digest}}.gtf
   - cd {{values.output_folder}}; cellranger mkref --genome=ref --fasta={{values.assets["fasta"].seek_keys_dict["fasta"]}} --genes={{values.output_folder}}/{{values.genome_digest}}_filtered.gtf
