@@ -16,5 +16,5 @@ docker_image: docker.io/databio/refgenie
 command_templates:
   - bowtie2-build --threads {{values.params["threads"]}} {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}/{{values.genome_digest}}
 custom_properties:
-  version: bowtie2 --version | awk 'NR==1{print $3}'
+  version: bowtie2-build --version | awk 'NR==1{print $3}'
 default_asset: "{{values.custom_properties.version}}"
