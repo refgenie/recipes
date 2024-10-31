@@ -6,10 +6,10 @@ description:
 seek_keys:
   tindex:
     value: "{genome}.tal_{mersize}"
-    type: file
-    description: Tallymer index
+    type: prefix
+    description: Tallymer index files
   search_file:
     value: "{genome}.tal_{mersize}.gtTxt"
     type: file
-    description: Tallymer index
+    description: Tallymer index search file
 parents: []
