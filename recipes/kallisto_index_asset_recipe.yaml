@@ -11,7 +11,7 @@ input_assets:
     description: fasta asset for transcriptome
 docker_image: databio/refgenie
 command_templates:
-  - kallisto index -i {{values.output_folder}}/{{values.genome_digest}}_kallisto_index.idx {{values.assets["fasta"].seek_keys_dict["fasta"]}}
+  - kallisto index -i {{values.output_folder}}/{{values.genome_digest}}_kallisto_index.idx {{values.genome_folder}}/{{values.assets["fasta_txome"].seek_keys_dict["fasta"]}}
 custom_properties:
   version: "kallisto version | awk '{print $3}'"
 default_asset: "{{values.custom_properties.version}}"
