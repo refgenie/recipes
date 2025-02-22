@@ -5,7 +5,10 @@ description:
   Genome index for Bisulfite-Seq applications, produced by bismark_genome_preparation
   using bowtie2
 input_files: {}
-input_params: {}
+input_params:
+  parallel:
+    default: "4"
+    description: Number of threads to use for parallel computing
 input_assets:
   fasta:
     asset_class: fasta
@@ -14,7 +17,7 @@ input_assets:
 docker_image: databio/refgenie
 command_templates:
   - ln -sf {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} {{values.output_folder}}
-  - bismark_genome_preparation --bowtie2 {{values.output_folder}}
+  - bismark_genome_preparation --bowtie2 {{values.output_folder}} --parallel {{values.params["parallel"]}}
 custom_properties:
   version: "bismark_genome_preparation --version | awk 'NR==4{print $5}' | cut -c2-"
 default_asset: "{{values.custom_properties.version}}"
