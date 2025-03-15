@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refgenie Data Channel</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <link href="./assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <div class="w-full">
+    <header class="refgenie-green py-6 px-4 md:px-8">
+      <div class="container mx-auto">
+        <h1 class="text-3xl font-bold text-white text-center md:text-left">Refgenie Data Channel</h1>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 md:px-8 py-8">
+      <p class="text-lg text-gray-700 mb-10">
+        This site can be used as a Refgenie data channel -- source of asset classes and recipes.
+      </p>
+
+      <!-- Explanation for the index.yaml file with link icon -->
+      <div class="bg-white border border-gray-200 rounded-lg p-6 mb-10 shadow-sm">
+        <h2 class="text-xl font-semibold refgenie-green-text mb-4">
+          1. Connect
+        </h2>
+        <p class="mb-6 text-gray-600">Add this data channel by executing the following command:</p>
+        <div class="relative">
+          <pre id="command-box-1" class="command-bg text-gray-200 p-6 rounded-lg font-mono text-sm overflow-x-auto"><code>refgenie data_channel add <span id="channel-name"></span> https <span id="current-url"></span>index.yaml</code></pre>
+          <button onclick="copyToClipboard('command-box-1', 'copy-btn-1')" id="copy-btn-1" class="absolute top-3 right-3 refgenie-green hover:bg-opacity-90 text-white py-2 px-4 rounded-md transition duration-100 text-sm">
+            Copy
+          </button>
+        </div>
+        <h2 class="text-xl font-semibold refgenie-green-text mt-8 mb-4">
+          2. Sync
+        </h2>
+        <p class="mb-6 text-gray-600">Add all asset classes and recipes published by this data channel by executing the following command:</p>
+        <div class="relative">
+          <pre id="command-box-2" class="command-bg text-gray-200 p-6 rounded-lg font-mono text-sm overflow-x-auto"><code>refgenie data_channel sync <span id="channel-name-2"></span></code></pre>
+          <button onclick="copyToClipboard('command-box-2', 'copy-btn-2')" id="copy-btn-2" class="absolute top-3 right-3 refgenie-green hover:bg-opacity-90 text-white py-2 px-4 rounded-md transition duration-100 text-sm">
+            Copy
+          </button>
+        </div>
+        <!-- Link and explanation to index.yaml -->
+        <div class="mt-6">
+          <p class="text-gray-600 mb-4">
+            To learn more about the asset classes and recipes offered by this data channel, view the <a href="<span id='current-url'></span>index.yaml" class="refgenie-green-text hover:underline"><span>index.yaml</span><i class="fas fa-external-link-alt ml-2"></i></a> file.
+          </p>
+        </div>
+      </div>
+
+      <div class="refgenie-light-bg border-l-4 refgenie-border rounded-lg p-6">
+        <div class="flex flex-col md:flex-row items-center md:items-start">
+          <div class="w-48 mb-4 md:mb-0 md:mr-8 flex-shrink-0">
+            <img src="./assets/images/refgenie-logo.svg" alt="Refgenie Logo" class="max-w-full h-auto">
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold refgenie-green-text mb-4">
+              About Refgenie
+            </h2>
+            <p class="text-gray-700">
+              Refgenie is a reference genome asset manager that makes it easy to organize, retrieve, and build genome analysis resources. It provides a standardized interface for accessing common bioinformatics reference assets across environments.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-t border-gray-200 mt-10 py-6 px-4 md:px-8">
+      <div class="container mx-auto">
+        <p class="text-gray-500 text-center md:text-left"><a href="https://github.com/refgenie/refgenie" class="refgenie-green-text hover:underline">Refgenie on GitHub<i class="fas fa-external-link-alt ml-2"></i></a></p>
+      </div>
+    </footer>
+  </div>
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>

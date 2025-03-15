@@ -1,0 +1,29 @@
+:root {
+  --refgenie-green: #337a5f;
+  --refgenie-light-green: #e6f2ee;
+}
+
+body {
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.refgenie-green {
+  background-color: var(--refgenie-green);
+}
+
+.refgenie-green-text {
+  color: var(--refgenie-green);
+}
+
+.refgenie-light-bg {
+  background-color: var(--refgenie-light-green);
+}
+
+.refgenie-border {
+  border-color: var(--refgenie-green);
+}
+
+.command-bg {
+  background-color: #2d3748;
+}
