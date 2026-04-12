@@ -1,5 +1,5 @@
 name: kallisto_index
-version: 0.0.1
+version: 0.1.0
 description: Genome index for kallisto, produced with kallisto index
 seek_keys:
   kallisto_index:
@@ -7,4 +7,7 @@ seek_keys:
     type: directory
     description: Directory containing the kallisto index
 
+  version:
+    type: string
+    description: "Kallisto version used to build the index"
 parents: []

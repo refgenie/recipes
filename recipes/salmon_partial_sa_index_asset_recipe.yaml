@@ -42,6 +42,6 @@ command_template_list:
   - grep '>' {{asset_outfolder}}/decoy.fa | awk '{print substr($1,2); }}' > {{asset_outfolder}}/decoys.txt
   - rm {{asset_outfolder}}/exons.bed {{asset_outfolder}}/reference.masked.genome.fa {{asset_outfolder}}/mashmap.out {{asset_outfolder}}/genome_found.sorted.bed {{asset_outfolder}}/genome_found_merged.bed {{asset_outfolder}}/genome_found.fa {{asset_outfolder}}/decoy.fa {{asset_outfolder}}/reference.masked.genome.fa.fai
   - salmon index -t {{asset_outfolder}}/gentrome.fa -d {{asset_outfolder}}/decoys.txt -i {asset_outfolder} -k {kmer} -p {threads}
-custom_properties:
+custom_seek_keys:
   version: salmon --version | awk '{print $2}'
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{custom_seek_keys.version}}"

@@ -1,5 +1,5 @@
 name: suffixerator_index
-version: 0.0.1
+version: 0.1.0
 description:
   Enhanced suffix array index for genomes using gt (GenomeTools) suffixerator
   program
@@ -8,4 +8,7 @@ seek_keys:
     value: "{genome}.sft"
     type: file
     description: Suffix array file
+  version:
+    type: string
+    description: "Suffixerator version used to build the index"
 parents: []

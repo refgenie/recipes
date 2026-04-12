@@ -1,5 +1,5 @@
 name: tallymer_index
-version: 0.0.1
+version: 0.1.0
 description:
   Indexed k-mers for a given enhanced suffix array at a fixed value of
   k
@@ -12,4 +12,7 @@ seek_keys:
     value: "{genome}.tal_{mersize}.gtTxt"
     type: file
     description: Tallymer index
+  version:
+    type: string
+    description: "Tallymer version used to build the index"
 parents: []

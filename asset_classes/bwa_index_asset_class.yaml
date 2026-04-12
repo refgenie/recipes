@@ -1,9 +1,12 @@
 name: bwa_index
-version: 0.0.1
+version: 0.1.0
 description: Genome index for Burrows-Wheeler Alignment Tool, produced with bwa index
 seek_keys:
   bwa_index:
     value: "{genome}.fa"
     type: file
     description: Reference sequence for BWA
+  version:
+    type: string
+    description: "BWA version used to build the index"
 parents: []

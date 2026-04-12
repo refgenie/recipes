@@ -1,5 +1,5 @@
 name: salmon_partial_sa_index
-version: 0.0.1
+version: 0.1.0
 description:
   Transcriptome index for salmon, produced with salmon index using partial
   selective alignment method. Preparation includes transcriptome mapping to the genome
@@ -10,4 +10,7 @@ seek_keys:
     value: "."
     type: directory
     description: Directory with the partial Salmon index
+  version:
+    type: string
+    description: "Salmon version used to build the index"
 parents: []

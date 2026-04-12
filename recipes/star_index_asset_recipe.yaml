@@ -17,6 +17,6 @@ container: databio/refgenie
 command_template_list:
   - mkdir -p {{asset_outfolder}}
   - STAR --runThreadN {{params.threads}} --runMode genomeGenerate --genomeDir {{asset_outfolder}} --genomeFastaFiles {{assets.fasta}}
-custom_properties:
+custom_seek_keys:
   version: "STAR --version"
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{custom_seek_keys.version}}"

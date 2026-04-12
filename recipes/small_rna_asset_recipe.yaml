@@ -14,6 +14,6 @@ container: docker.io/databio/refgenie
 command_template_list:
   - cp {{files.hairpin}} {{asset_outfolder}}/{{genome}}_hairpin.fa
   - cp {{files.mature}} {{asset_outfolder}}/{{genome}}_mature.fa
-custom_properties:
+custom_seek_keys:
   version: ''
-default_tag: '{{custom_properties.version}}'
+default_tag: '{{custom_seek_keys.version}}'

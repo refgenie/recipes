@@ -20,6 +20,6 @@ command_template_list:
   - cp {{files.polyA}} {{asset_outfolder}}/{{genome}}_polyA.fa
   - cp {{files.polyC}} {{asset_outfolder}}/{{genome}}_polyC.fa
   - cp {{files.adapter_contam}} {{asset_outfolder}}/{{genome}}_adapter_contam.fa
-custom_properties:
+custom_seek_keys:
   version: ""
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{custom_seek_keys.version}}"

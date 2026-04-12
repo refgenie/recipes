@@ -17,9 +17,9 @@ command_template_list:
   - samtools faidx {{asset_outfolder}}/{{genome}}.fa
   - cut -f 1,2 {{asset_outfolder}}/{{genome}}.fa.fai > {{asset_outfolder}}/{{genome}}.chrom.sizes
   - cat {{asset_outfolder}}/{{genome}}.fa | samtools dict -o {{asset_outfolder}}/{{genome}}.dict
-custom_properties:
+custom_seek_keys:
   version: "samtools --version-only | awk -F+ '{print $1}'"
-default_tag: "samtools-{{custom_properties.version}}"
+default_tag: "samtools-{{custom_seek_keys.version}}"
 test:
   inputs:
     fasta: http://big.databio.org/refgenie_raw/t7-fasta-fasta

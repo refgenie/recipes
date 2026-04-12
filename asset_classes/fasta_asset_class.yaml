@@ -1,5 +1,5 @@
 name: fasta
-version: 0.0.1
+version: 0.1.0
 description: Sequences in the FASTA format, indexed FASTA (produced with samtools index) and chromosome sizes file
 seek_keys:
   fasta:
@@ -18,4 +18,7 @@ seek_keys:
     value: "{genome}.dict"
     description: FASTA Dictionary file
     type: file
+  version:
+    type: string
+    description: "Samtools version used for indexing"
 parents: []

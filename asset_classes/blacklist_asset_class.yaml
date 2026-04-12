@@ -1,5 +1,5 @@
 name: blacklist
-version: 0.0.1
+version: 0.1.0
 description:
   Atypical, unstructured, or high signal genomic regions present in next-generation
   sequencing experiments (e.g. from ENCODE)
@@ -8,4 +8,7 @@ seek_keys:
     value: "{genome}_blacklist.bed.gz"
     type: file
     description: "A BED file containing regions to exclude from analysis"
+  version:
+    type: string
+    description: "Tool version"
 parents: []

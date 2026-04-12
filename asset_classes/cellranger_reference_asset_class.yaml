@@ -1,5 +1,5 @@
 name: cellranger_reference
-version: 0.0.1
+version: 0.1.0
 description:
   Cell Ranger custom genome reference for read alignment and gene expression
   quantification
@@ -8,4 +8,7 @@ seek_keys:
     value: ref
     type: directory
     description: Cell Ranger reference directory
+  version:
+    type: string
+    description: "Cell Ranger version used to build the reference"
 parents: []

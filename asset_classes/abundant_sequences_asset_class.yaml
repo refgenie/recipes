@@ -1,5 +1,5 @@
 name: abundant_sequences
-version: 0.0.1
+version: 0.1.0
 description: Abundant sequences in the FASTA format -- PhiX spike-in, Poly(A), Poly(C) and adapter sequences
 seek_keys:
   abundant_sequences:
@@ -22,4 +22,7 @@ seek_keys:
     value: "{genome}_adapter_contam.fa"
     type: file
     description: Adapter contaminated sequence
+  version:
+    type: string
+    description: "Tool version"
 parents: []

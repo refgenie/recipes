@@ -1,5 +1,5 @@
 name: salmon_sa_index
-version: 0.0.1
+version: 0.1.0
 description:
   Transcriptome index for salmon, produced with salmon index using selective
   alignment method. Improves quantification accuracy compared to the regular index.
@@ -8,4 +8,7 @@ seek_keys:
     value: "."
     type: directory
     description: Directory containing the Salmon index.
+  version:
+    type: string
+    description: "Salmon version used to build the index"
 parents: []

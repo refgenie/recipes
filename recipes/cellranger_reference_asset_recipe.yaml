@@ -26,6 +26,6 @@ command_template_list:
   - rm {{asset_outfolder}}/{{genome}}.gtf
   - cd {{asset_outfolder}}; cellranger mkref --genome=ref --fasta={{assets.fasta}} --genes={{asset_outfolder}}/{{genome}}_filtered.gtf
     --nthreads={{params.threads}}
-custom_properties:
+custom_seek_keys:
   version: "cellranger mkref --version | awk 'NR==6{print $3}'"
-default_tag: "{{custom_properties.version}}"
+default_tag: "{{custom_seek_keys.version}}"
