@@ -1,0 +1,30 @@
+name: fasta_attributes
+version: 0.0.1
+description: Sequences in the FASTA format, indexed FASTA (produced with samtools index), chromosome sizes file and attributes to Sequences in the FASTA file; mito_name (Mitocondrial chromosome name) and macs_gsize (Genome efective size).
+seek_keys:
+  fasta:
+    value: "{genome}.fa"
+    description: FASTA file
+    type: file
+  fai:
+    value: "{genome}.fa.fai"
+    description: FASTA index file
+    type: file
+  chrom_sizes:
+    value: "{genome}.chrom.sizes"
+    description: Chromosome sizes file
+    type: file
+  dict:
+    value: "{genome}.dict"
+    description: FASTA Dictionary file
+    type: file
+  mito_name:
+    value: "{params.name}"
+    description: Mitocondrial chromosome name
+    type: string
+  macs_gsize:
+    value: "{params.name}"
+    description: Genome efective size
+    type: string
+parents: 
+  - fasta
