@@ -1,0 +1,17 @@
+[project]
+name = "refgenie-recipes"
+version = "0.1.0"
+description = "Community recipes and asset class definitions for refgenie"
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+    "pyyaml>=6.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"

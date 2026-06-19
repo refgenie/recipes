@@ -9,7 +9,11 @@ seek_keys:
   refgene_tss:
     value: "{genome}_TSS.bed"
     type: file
-    description: refGene TSS annotation file
+    description: refGene TSS annotation file (all TSS, preserving genes sharing a start site)
+  refgene_tss_unique:
+    value: "{genome}_TSS_unique.bed"
+    type: file
+    description: refGene TSS annotation file (unique by genomic position)
   refgene_exon:
     value: "{genome}_exons.bed"
     type: file

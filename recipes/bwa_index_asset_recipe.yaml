@@ -9,9 +9,11 @@ input_assets:
     asset_class: fasta
     description: fasta asset for genome
     default: fasta
+    colocate:
+      - source_key: fasta
 docker_image: databio/refgenie
 command_templates:
-  - bwa index -p {{values.output_folder}}/{{values.genome_digest}} {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}}
+  - bwa index {{values.output_folder}}/{{values.genome_digest}}.fa
 custom_seek_keys:
   version: "bwa 2>&1 | grep Version | cut -d' ' -f2 | awk -F- '{print $1}'" # uses stderr; monitor https://github.com/lh3/bwa/issues/202
 default_asset: "{{values.custom_seek_keys.version}}"
