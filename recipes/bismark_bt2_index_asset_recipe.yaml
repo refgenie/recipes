@@ -19,6 +19,6 @@ input_assets:
 docker_image: databio/refgenie
 command_templates:
   - bismark_genome_preparation --bowtie2 {{values.output_folder}} --parallel {{values.params["parallel"]}}
-custom_properties:
+custom_seek_keys:
   version: "bismark_genome_preparation --version | awk 'NR==4{print $5}' | cut -c2-"
-default_asset: "{{values.custom_properties.version}}"
+default_asset: "{{values.custom_seek_keys.version}}"

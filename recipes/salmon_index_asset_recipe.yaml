@@ -18,6 +18,6 @@ input_assets:
 docker_image: combinelab/salmon
 command_templates:
   - salmon index -t {{values.genome_folder}}/{{values.assets["fasta_txome"].seek_keys_dict["fasta"]}} -i {{values.output_folder}} -k {{values.params["kmer"]}} -p {{values.params["threads"]}}
-custom_properties:
+custom_seek_keys:
   version: salmon --version | awk '{print $2}'
-default_asset: "{{values.custom_properties.version}}"
+default_asset: "{{values.custom_seek_keys.version}}"

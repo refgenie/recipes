@@ -41,6 +41,6 @@ command_templates:
   - "grep '>' {{values.output_folder}}/decoy.fa | awk '{print substr($1,2); }' > {{values.output_folder}}/decoys.txt"
   - "rm {{values.output_folder}}/exons.bed {{values.output_folder}}/reference.masked.genome.fa {{values.output_folder}}/mashmap.out {{values.output_folder}}/genome_found.sorted.bed {{values.output_folder}}/genome_found_merged.bed {{values.output_folder}}/genome_found.fa {{values.output_folder}}/decoy.fa {{values.output_folder}}/reference.masked.genome.fa.fai"
   - 'salmon index -t {{values.output_folder}}/gentrome.fa -d {{values.output_folder}}/decoys.txt -i {{values.output_folder}} -k {{values.params["kmer"]}} -p {{values.params["threads"]}}'
-custom_properties:
+custom_seek_keys:
   version: "salmon --version | awk '{print $2}'"
-default_asset: "{{values.custom_properties.version}}"
+default_asset: "{{values.custom_seek_keys.version}}"

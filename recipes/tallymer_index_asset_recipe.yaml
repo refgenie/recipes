@@ -34,6 +34,6 @@ command_templates:
     -tyr {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}} \
     -q {{values.genome_folder}}/{{values.assets["fasta"].seek_keys_dict["fasta"]}} \
     > {{values.output_folder}}/{{values.genome_digest}}.tal_{{values.params["mersize"]}}.gtTxt
-custom_properties:
+custom_seek_keys:
   version: "gt tallymer --version | awk 'NR==1{print $4}'"
-default_asset: "{{values.custom_properties.version}}"
+default_asset: "{{values.custom_seek_keys.version}}"
