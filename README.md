@@ -1,10 +1,27 @@
-# recipes
+# recipes (legacy — superseded by refgenie-registry)
 
-This repository contains a community-organized set of recipes and asset class definition files for use with the refgenie system.
+> **Deprecated.** This repository is the recipe / asset-class data channel for
+> the **legacy** refgenie (`refgenie` / `refgenconf` / `refgenieserver`), which
+> is end-of-life. It is **not used by refgenie1**.
+>
+> **New recipes, asset classes, and build requests go to
+> [refgenie-registry](https://github.com/refgenie/refgenie-registry)** — the
+> single source of truth for refgenie1. refgenie1 builds directly from the
+> registry, and that is also where users submit new recipes and request builds.
+> Please do **not** open recipe PRs here.
+>
+> This repository is retained only to keep the legacy
+> `https://refgenie.github.io/recipes/` data channel serving existing
+> legacy-refgenie users during the transition.
+
+This repository contains a community-organized set of recipes and asset class definition files for use with the **legacy** refgenie system.
 
 ## How to submit
 
-Submissions via Pull Request are welcome. Subbmissions of new recipes will be reviewed and approved by the refgenie team. Just clone the repository, add your recipe or asset class files, and submit a PR.
+New submissions are **no longer accepted here**. Contribute recipes and asset
+classes to [refgenie-registry](https://github.com/refgenie/refgenie-registry)
+instead (see its *Add a recipe* section). The indexing and validation steps
+below apply only to maintaining the legacy data channel.
 
 
 ## Indexing
