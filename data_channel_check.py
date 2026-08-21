@@ -41,7 +41,7 @@ def load_yaml_content(source: str, is_url: bool = False) -> Optional[Dict]:
 def validate_asset_class(data: Dict) -> List[str]:
     """
     Validate an asset class according to the specification.
-    https://refgenie.org/refgenie1/asset_class_specification/
+    https://docs.refgenie.org/refgenie/asset_class_specification/
 
     Args:
         data: The asset class data
@@ -67,7 +67,7 @@ def validate_asset_class(data: Dict) -> List[str]:
 def validate_recipe(data: Dict) -> List[str]:
     """
     Validate a recipe according to the specification.
-    https://refgenie.org/refgenie1/recipe_specification/
+    https://docs.refgenie.org/refgenie/recipe_specification/
 
     Args:
         data: The recipe data
